@@ -1,6 +1,6 @@
 import { db } from "./db";
 
-export const settingsController = {
+export const SettingsController = {
   // Get all settings
   getAllSettings: async () => {
     try {
