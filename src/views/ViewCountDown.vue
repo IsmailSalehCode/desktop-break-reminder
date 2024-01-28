@@ -19,6 +19,7 @@ export default {
     isTimerDone(v) {
       if (v == true) {
         this.stopTimer();
+        window.electronAPI.bringMainWindowToFront();
       }
     },
   },

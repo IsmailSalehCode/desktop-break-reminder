@@ -26,4 +26,11 @@ The purpose of ipcRenderer is to send and receive asynchronous messages between 
  */
 const { contextBridge, ipcRenderer } = require("electron");
 
-contextBridge.exposeInMainWorld("electronAPI", {});
+contextBridge.exposeInMainWorld("electronAPI", {
+  maximizeWindow: () => {
+    ipcRenderer.send("maximize-window");
+  },
+  bringMainWindowToFront: () => {
+    ipcRenderer.send("bring-main-window-to-front");
+  },
+});

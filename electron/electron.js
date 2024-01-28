@@ -89,6 +89,12 @@ app.whenReady().then(() => {
   createWindow();
   createTray();
 
+  ipcMain.on("bring-main-window-to-front", () => {
+    if (mainWindow) {
+      mainWindow.show();
+    }
+  });
+
   app.on("activate", function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
