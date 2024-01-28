@@ -30,6 +30,9 @@ contextBridge.exposeInMainWorld("electronAPI", {
   maximizeWindow: () => {
     ipcRenderer.send("maximize-window");
   },
+  minimizeMainWindow() {
+    ipcRenderer.send("minimize-main-window");
+  },
   bringMainWindowToFront: () => {
     ipcRenderer.send("bring-main-window-to-front");
   },
