@@ -1,15 +1,17 @@
 <template>
   <v-container style="text-align: center">
-    <div>Current state: {{ strCurrTimerState }}</div>
-    <div>
-      <p>Time: {{ formatElapsedTime() }}</p>
-    </div>
+    <v-row style="justify-content: center; font-size: 4vw">
+      <v-col cols="12"> Current state: {{ strCurrTimerState }} </v-col>
+      <v-col cols="12"> Time: {{ formatElapsedTime() }} </v-col>
+    </v-row>
     <br />
-    <div v-if="isTimerDone">
-      <v-btn size="x-large" variant="outlined" @click="toggleTimerState"
-        >Start {{ nextActionDuringTimerState }}!</v-btn
-      >
-    </div>
+    <v-row v-if="isTimerDone">
+      <v-col>
+        <v-btn size="x-large" variant="outlined" @click="toggleTimerState"
+          >Start {{ nextActionDuringTimerState }}!</v-btn
+        >
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 <script>
