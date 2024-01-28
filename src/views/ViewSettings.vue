@@ -47,15 +47,12 @@ export default {
       } catch (err) {
         console.error(err);
       }
-      console.log(storedSettings);
       this.settings = storedSettings;
-      console.log(this.settings);
     },
     async updateSettings() {
       const { valid } = await this.$refs.form.validate();
       if (valid) {
-        const settingsjson = JSON.stringify(this.settings);
-        const result = await SettingsController.updateSettings(settingsjson);
+        const result = await SettingsController.updateSettings(this.settings);
         if (result instanceof Error) {
           console.error(result);
         }

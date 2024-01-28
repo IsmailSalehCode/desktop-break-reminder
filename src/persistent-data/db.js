@@ -26,5 +26,4 @@ async function initializeSettingsTable() {
   }
 }
 
-// Call the initialization function
 initializeSettingsTable();
