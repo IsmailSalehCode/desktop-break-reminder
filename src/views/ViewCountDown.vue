@@ -6,7 +6,7 @@
     </div>
     <br />
     <div v-if="isTimerDone">
-      <v-btn @click="toggleTimerState"
+      <v-btn size="x-large" variant="outlined" @click="toggleTimerState"
         >Start {{ nextActionDuringTimerState }}!</v-btn
       >
     </div>
