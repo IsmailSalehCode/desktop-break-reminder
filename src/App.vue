@@ -1,13 +1,18 @@
 <template>
   <v-app>
+    <AppBar />
     <v-main>
       <router-view></router-view>
     </v-main>
+    <AppFooter />
   </v-app>
 </template>
 
 <script>
+import AppBar from "./components/AppBar.vue";
+import AppFooter from "./components/AppFooter.vue";
 export default {
+  components: { AppBar, AppFooter },
   created() {
     // prevent blank page in Electron build
     this.$router.push("/");
