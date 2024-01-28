@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-form>
+    <v-form ref="form" @submit="updateSettings" @submit.prevent>
       <v-text-field
         class="PositiveNumberField"
         label="Work duration (s)"
@@ -23,6 +23,7 @@
         v-model="settings.wantsMinWhenTimerStart"
         label="Minimize when timer starts."
       ></v-checkbox>
+      <v-btn type="submit" color="success">Save & Apply</v-btn>
     </v-form>
   </v-container>
 </template>
@@ -40,18 +41,24 @@ export default {
   },
   methods: {
     async getAllSettings() {
+      let storedSettings;
       try {
-        const fromDB = await SettingsController.getAllSettings();
-        console.log(fromDB);
+        storedSettings = await SettingsController.getAllSettings();
       } catch (err) {
         console.error(err);
       }
+      console.log(storedSettings);
+      this.settings = storedSettings;
+      console.log(this.settings);
     },
-    async updateWorkDuration(v) {
-      try {
-        console.log(v);
-      } catch (err) {
-        console.error(err);
+    async updateSettings() {
+      const { valid } = await this.$refs.form.validate();
+      if (valid) {
+        const settingsjson = JSON.stringify(this.settings);
+        const result = await SettingsController.updateSettings(settingsjson);
+        if (result instanceof Error) {
+          console.error(result);
+        }
       }
     },
   },
