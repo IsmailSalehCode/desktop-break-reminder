@@ -4,6 +4,13 @@
       <v-col cols="12"> Current state: {{ strCurrTimerState }} </v-col>
       <v-col cols="12"> Time: {{ formatElapsedTime() }} </v-col>
     </v-row>
+    <v-row v-if="!isTimerDone">
+      <v-col
+        ><v-btn size="large" @click="togglePause">{{
+          playPauseButtonLabel
+        }}</v-btn></v-col
+      >
+    </v-row>
     <br />
     <v-row v-if="isTimerDone">
       <v-col>
@@ -28,6 +35,9 @@ export default {
     },
   },
   computed: {
+    playPauseButtonLabel() {
+      return this.isPaused ? "Resume" : "Pause";
+    },
     isTimerDone() {
       return this.secondsRemaining === 0;
     },
@@ -54,14 +64,29 @@ export default {
       isWorking: true,
       secondsWorkDuration: 5,
       secondsRestDuration: 2,
+      isPaused: false,
     };
   },
   methods: {
+    runTimer() {
+      this.isPaused = false;
+      this.intervalId = setInterval(() => {
+        this.secondsRemaining--;
+      }, 1000);
+    },
+    togglePause() {
+      if (!this.isPaused) {
+        this.stopTimer();
+      } else {
+        this.runTimer();
+      }
+    },
     toggleTimerState() {
       this.isWorking = !this.isWorking;
       this.startTimer();
     },
     stopTimer() {
+      this.isPaused = true;
       const currTimerId = this.intervalId;
       clearInterval(currTimerId);
     },
@@ -71,10 +96,7 @@ export default {
       } else {
         this.secondsRemaining = this.secondsRestDuration;
       }
-      // Start counting down from the initial seconds value
-      this.intervalId = setInterval(() => {
-        this.secondsRemaining--;
-      }, 1000);
+      this.runTimer();
     },
     formatElapsedTime() {
       // Calculate hours, minutes, and remaining seconds
