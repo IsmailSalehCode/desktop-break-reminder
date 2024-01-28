@@ -12,6 +12,16 @@
       v-model="settings.restDuration"
       :rules="rulesTimeDuration"
     ></v-text-field>
+    <v-checkbox
+      density="compact"
+      v-model="settings.wantsMaxWhenTimerDone"
+      label="Maximize when timer has elapsed."
+    ></v-checkbox>
+    <v-checkbox
+      density="compact"
+      v-model="settings.wantsMinWhenTimerStart"
+      label="Minimize when timer starts."
+    ></v-checkbox>
   </v-container>
 </template>
 <script>
