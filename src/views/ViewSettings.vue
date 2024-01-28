@@ -16,12 +16,12 @@
       <v-checkbox
         density="compact"
         v-model="settings.wantsMaxWhenTimerDone"
-        label="Maximize when timer has elapsed."
+        label="Maximize app window when timer has elapsed."
       ></v-checkbox>
       <v-checkbox
         density="compact"
         v-model="settings.wantsMinWhenTimerStart"
-        label="Minimize when timer starts."
+        label="Minimize app window when timer starts."
       ></v-checkbox>
       <v-btn type="submit" color="success">Save & Apply</v-btn>
     </v-form>
