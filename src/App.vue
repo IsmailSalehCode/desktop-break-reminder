@@ -12,6 +12,17 @@ export default {
     // prevent blank page in Electron build
     this.$router.push("/");
   },
+  methods: {
+    bringToFront() {
+      window.electronAPI.bringMainWindowToFront();
+    },
+    maximize() {
+      window.electronAPI.maximizeMainWindow();
+    },
+    minimize() {
+      window.electronAPI.minimizeMainWindow();
+    },
+  },
 };
 </script>
 
