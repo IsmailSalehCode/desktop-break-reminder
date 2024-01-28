@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="text-align: center">
     <div>Current state: {{ strCurrTimerState }}</div>
     <div>
       <p>Time: {{ formatElapsedTime() }}</p>
@@ -33,7 +33,8 @@ export default {
       if (this.isTimerDone == true) {
         return "Waiting for input.";
       }
-      return this.isWorking ? "working" : "resting";
+      const res = this.isWorking ? "Working" : "Resting";
+      return res.concat(" ...");
     },
     nextActionDuringTimerState() {
       return this.isWorking ? "resting" : "working";
