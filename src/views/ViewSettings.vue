@@ -1,27 +1,29 @@
 <template>
   <v-container>
-    <v-text-field
-      class="PositiveNumberField"
-      label="Work duration (s)"
-      v-model="settings.workDuration"
-      :rules="rulesTimeDuration"
-    ></v-text-field>
-    <v-text-field
-      class="PositiveNumberField"
-      label="Rest duration (s)"
-      v-model="settings.restDuration"
-      :rules="rulesTimeDuration"
-    ></v-text-field>
-    <v-checkbox
-      density="compact"
-      v-model="settings.wantsMaxWhenTimerDone"
-      label="Maximize when timer has elapsed."
-    ></v-checkbox>
-    <v-checkbox
-      density="compact"
-      v-model="settings.wantsMinWhenTimerStart"
-      label="Minimize when timer starts."
-    ></v-checkbox>
+    <v-form>
+      <v-text-field
+        class="PositiveNumberField"
+        label="Work duration (s)"
+        v-model="settings.workDuration"
+        :rules="rulesTimeDuration"
+      ></v-text-field>
+      <v-text-field
+        class="PositiveNumberField"
+        label="Rest duration (s)"
+        v-model="settings.restDuration"
+        :rules="rulesTimeDuration"
+      ></v-text-field>
+      <v-checkbox
+        density="compact"
+        v-model="settings.wantsMaxWhenTimerDone"
+        label="Maximize when timer has elapsed."
+      ></v-checkbox>
+      <v-checkbox
+        density="compact"
+        v-model="settings.wantsMinWhenTimerStart"
+        label="Minimize when timer starts."
+      ></v-checkbox>
+    </v-form>
   </v-container>
 </template>
 <script>
@@ -39,7 +41,15 @@ export default {
   methods: {
     async getAllSettings() {
       try {
-        this.settings = await SettingsController.getAllSettings();
+        const fromDB = await SettingsController.getAllSettings();
+        console.log(fromDB);
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    async updateWorkDuration(v) {
+      try {
+        console.log(v);
       } catch (err) {
         console.error(err);
       }
