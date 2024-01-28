@@ -1,14 +1,16 @@
 <template>
-  <div>Current state: {{ strCurrTimerState }}</div>
-  <div>
-    <p>Time: {{ formatElapsedTime() }}</p>
-  </div>
-  <br />
-  <div v-if="isTimerDone">
-    <v-btn @click="toggleTimerState"
-      >Start {{ nextActionDuringTimerState }}!</v-btn
-    >
-  </div>
+  <v-container>
+    <div>Current state: {{ strCurrTimerState }}</div>
+    <div>
+      <p>Time: {{ formatElapsedTime() }}</p>
+    </div>
+    <br />
+    <div v-if="isTimerDone">
+      <v-btn @click="toggleTimerState"
+        >Start {{ nextActionDuringTimerState }}!</v-btn
+      >
+    </div>
+  </v-container>
 </template>
 <script>
 export default {
