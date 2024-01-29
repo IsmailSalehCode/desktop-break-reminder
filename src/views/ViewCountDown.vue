@@ -6,7 +6,7 @@
     </v-row>
     <v-row v-if="!isTimerDone">
       <v-col
-        ><v-btn size="large" @click="togglePause">{{
+        ><v-btn variant="tonal" size="large" @click="togglePause">{{
           playPauseButtonLabel
         }}</v-btn></v-col
       >

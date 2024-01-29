@@ -23,7 +23,7 @@
         v-model="settings.wantsMinWhenTimerStart"
         label="Minimize app window when timer starts."
       ></v-checkbox>
-      <v-btn type="submit" color="success">Save & Apply</v-btn>
+      <v-btn variant="tonal" type="submit">Save & Apply</v-btn>
     </v-form>
   </v-container>
 </template>
