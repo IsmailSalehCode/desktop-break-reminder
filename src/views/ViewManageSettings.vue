@@ -1,6 +1,11 @@
 <template>
   <v-container fluid>
-    <v-form ref="form" @submit="updateSettings" @submit.prevent>
+    <v-form
+      :loading="loadingSettings"
+      ref="form"
+      @submit="updateSettings"
+      @submit.prevent
+    >
       <v-text-field
         class="PositiveNumberField"
         label="Work duration (s)"
@@ -49,27 +54,32 @@ export default {
   methods: {
     async getAllSettings() {
       let storedSettings;
+      this.loadingSettings = true;
       try {
         storedSettings = await SettingsController.getAllSettings();
       } catch (err) {
         console.error(err);
       }
       this.settings = storedSettings;
+      this.loadingSettings = false;
     },
     async updateSettings() {
       const { valid } = await this.$refs.form.validate();
       if (valid) {
+        this.loadingSettings = true;
         const result = await SettingsController.updateSettings(this.settings);
         if (result instanceof Error) {
           console.error(result);
         } else {
           window.electronAPI.showAlert("Settings have been updated.");
         }
+        this.loadingSettings = false;
       }
     },
   },
   data() {
     return {
+      loadingSettings: true,
       rulesTimeDuration: [required, isPositiveWholeNumber, isLessThanMaxNumber],
       rulesHex: [required, isValidHexCode],
       settings: {
