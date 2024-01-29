@@ -81,11 +81,11 @@ export default {
       rulesTimeDuration: [required, isPositiveWholeNumber, isLessThanMaxNumber],
       rulesHex: [required, isValidHexCode],
       settings: {
-        workDuration: 5,
-        restDuration: 2,
+        workDuration: 0,
+        restDuration: 0,
         wantsMaxWhenTimerElapsed: false,
         wantsMinWhenTimerStart: false,
-        hexBackgroundColorWhenTimerElapsed: "#800000",
+        hexBackgroundColorWhenTimerElapsed: "",
       },
     };
   },
