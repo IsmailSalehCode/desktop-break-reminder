@@ -111,7 +111,7 @@ app.whenReady().then(() => {
     dialog.showMessageBoxSync({
       type: "info",
       message: message,
-      buttons: ["A'ight"],
+      buttons: ["Cool"],
     });
   });
 
