@@ -1,6 +1,6 @@
 <template>
   <v-container style="text-align: center">
-    <v-row style="justify-content: center; font-size: 4vw">
+    <v-row class="text-expanding">
       <v-col cols="12"> Current state: {{ strCurrTimerState }} </v-col>
       <v-col cols="12"> Time remaining: {{ formatElapsedTime() }} </v-col>
     </v-row>
@@ -113,3 +113,15 @@ export default {
   },
 };
 </script>
+
+<style>
+.text-expanding {
+  font-size: 4vw;
+}
+
+@media screen and (max-width: 320px) {
+  .text-expanding {
+    font-size: 12px;
+  }
+}
+</style>
