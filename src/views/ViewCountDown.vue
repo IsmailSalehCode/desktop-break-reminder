@@ -114,7 +114,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .text-expanding {
   font-size: 4vw;
 }
