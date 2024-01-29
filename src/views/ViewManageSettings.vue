@@ -56,7 +56,7 @@ export default {
         if (result instanceof Error) {
           console.error(result);
         } else {
-          window.electronAPI.showAlert("Everything has been saved.");
+          window.electronAPI.showAlert("A'ight.");
         }
       }
     },
