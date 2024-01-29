@@ -23,6 +23,11 @@
         v-model="settings.wantsMinWhenTimerStart"
         label="Minimize app window when timer starts."
       ></v-checkbox>
+      <v-text-field
+        style="max-width: 150px"
+        v-model="settings.hexBackgroundColorWhenTimerElapsed"
+        label="Hex code of background color when timer has elapsed."
+      ></v-text-field>
       <v-btn variant="tonal" type="submit">Save & Apply</v-btn>
     </v-form>
   </v-container>
@@ -69,6 +74,7 @@ export default {
         restDuration: 2,
         wantsMaxWhenTimerElapsed: false,
         wantsMinWhenTimerStart: false,
+        hexBackgroundColorWhenTimerElapsed: "#800000",
       },
     };
   },
