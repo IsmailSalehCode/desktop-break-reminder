@@ -53,14 +53,12 @@ export default {
   },
   methods: {
     async getAllSettings() {
-      let storedSettings;
       this.loadingSettings = true;
       try {
-        storedSettings = await SettingsController.getAllSettings();
+        this.settings = await SettingsController.getAllSettings();
       } catch (err) {
         console.error(err);
       }
-      this.settings = storedSettings;
       this.loadingSettings = false;
     },
     async updateSettings() {
