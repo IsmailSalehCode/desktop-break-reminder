@@ -24,9 +24,10 @@
         label="Minimize app window when timer starts."
       ></v-checkbox>
       <v-text-field
-        style="max-width: 150px"
+        style="max-width: 200px"
         v-model="settings.hexBackgroundColorWhenTimerElapsed"
-        label="Hex code of background color when timer has elapsed."
+        label="Hex of BG upon timer elapse"
+        :rules="rulesHex"
       ></v-text-field>
       <v-btn variant="tonal" type="submit">Save & Apply</v-btn>
     </v-form>
@@ -38,6 +39,7 @@ import {
   required,
   isPositiveWholeNumber,
   isLessThanMaxNumber,
+  isValidHexCode,
 } from "../rules-fields/rules-common";
 
 export default {
@@ -69,6 +71,7 @@ export default {
   data() {
     return {
       rulesTimeDuration: [required, isPositiveWholeNumber, isLessThanMaxNumber],
+      rulesHex: [required, isValidHexCode],
       settings: {
         workDuration: 5,
         restDuration: 2,
