@@ -1,10 +1,9 @@
 {
-  "name": "mrz-admin-vault",
+  "name": "break-reminder",
   "version": "1.1.0",
-  "organization": "Технически университет - София",
-  "description": "ДИПЛОМНА РАБОТА - \"Софтуер за извличането и администрацията на данни от идентификационни документи, съдържащи машинно-четима зона.\"",
+  "description": "A productivity app.",
   "author": "Ismail Saleh",
-  "repository": "https://github.com/IsmailSalehCode/mrz-admin-vault",
+  "repository": "https://github.com/IsmailSalehCode/break-reminder",
   "main": "electron/electron.js",
   "private": true,
   "scripts": {

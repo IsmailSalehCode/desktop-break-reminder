@@ -36,4 +36,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
   bringMainWindowToFront: () => {
     ipcRenderer.send("bring-main-window-to-front");
   },
+  showAlert: (message) => {
+    ipcRenderer.send("show-alert", message);
+  },
 });

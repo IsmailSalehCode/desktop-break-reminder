@@ -107,6 +107,14 @@ app.whenReady().then(() => {
     }
   });
 
+  ipcMain.on("show-alert", (event, message) => {
+    dialog.showMessageBoxSync({
+      type: "info",
+      message: message,
+      buttons: ["OK"],
+    });
+  });
+
   app.on("activate", function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
