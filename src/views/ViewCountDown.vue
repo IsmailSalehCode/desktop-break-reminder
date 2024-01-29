@@ -23,6 +23,7 @@
 </template>
 <script>
 export default {
+  emits: ["bring-to-front", "max", "min"],
   mounted() {
     this.startTimer();
   },
@@ -30,7 +31,7 @@ export default {
     isTimerDone(v) {
       if (v == true) {
         this.stopTimer();
-        window.electronAPI.bringMainWindowToFront();
+        this.$emit("bring-to-front");
       }
     },
   },

@@ -2,7 +2,11 @@
   <v-app>
     <AppBar />
     <v-main>
-      <router-view></router-view>
+      <router-view
+        @max="maximize"
+        @min="minimize"
+        @bring-to-front="bringToFront"
+      ></router-view>
     </v-main>
     <AppFooter />
   </v-app>
