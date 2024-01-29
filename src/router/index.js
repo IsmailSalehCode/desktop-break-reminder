@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ViewCountDown from "../views/ViewCountDown.vue";
-import ViewSettings from "../views/ViewSettings.vue";
+import ViewManageSettings from "../views/ViewManageSettings.vue";
 
 const routes = [
   {
@@ -9,7 +9,7 @@ const routes = [
   },
   {
     path: "/settings",
-    component: ViewSettings,
+    component: ViewManageSettings,
   },
 ];
 
