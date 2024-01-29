@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-form ref="form" @submit="updateSettings" @submit.prevent>
       <v-text-field
         class="PositiveNumberField"
