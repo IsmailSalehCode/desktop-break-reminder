@@ -32,6 +32,7 @@ export default {
       if (v == true) {
         this.stopTimer();
         this.$emit("bring-to-front");
+        this.$emit("max");
       }
     },
   },
@@ -74,6 +75,7 @@ export default {
       this.intervalId = setInterval(() => {
         this.secondsRemaining--;
       }, 1000);
+      this.$emit("min");
     },
     togglePause() {
       if (!this.isPaused) {
