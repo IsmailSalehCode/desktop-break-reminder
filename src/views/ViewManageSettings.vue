@@ -56,7 +56,7 @@ export default {
         if (result instanceof Error) {
           console.error(result);
         } else {
-          window.electronAPI.showAlert("A'ight.");
+          window.electronAPI.showAlert("Settings have been updated.");
         }
       }
     },
