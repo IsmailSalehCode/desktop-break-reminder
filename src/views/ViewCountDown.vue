@@ -26,7 +26,6 @@ export default {
   emits: ["bring-to-front", "max", "min"],
   mounted() {
     this.startTimer();
-    // window.electronAPI.showAlert("test"); works
   },
   watch: {
     isTimerDone(v) {

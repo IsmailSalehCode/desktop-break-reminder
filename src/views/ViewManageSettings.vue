@@ -55,6 +55,8 @@ export default {
         const result = await SettingsController.updateSettings(this.settings);
         if (result instanceof Error) {
           console.error(result);
+        } else {
+          window.electronAPI.showAlert("Everything has been saved.");
         }
       }
     },
