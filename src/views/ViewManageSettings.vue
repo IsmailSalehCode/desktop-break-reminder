@@ -15,7 +15,7 @@
       ></v-text-field>
       <v-checkbox
         density="compact"
-        v-model="settings.wantsMaxWhenTimerDone"
+        v-model="settings.wantsMaxWhenTimerElapsed"
         label="Maximize app window when timer has elapsed."
       ></v-checkbox>
       <v-checkbox
@@ -67,7 +67,7 @@ export default {
       settings: {
         workDuration: 5,
         restDuration: 2,
-        wantsMaxWhenTimerDone: false,
+        wantsMaxWhenTimerElapsed: false,
         wantsMinWhenTimerStart: false,
       },
     };

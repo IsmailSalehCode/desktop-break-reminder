@@ -4,7 +4,7 @@
       <v-col cols="12"> Current state: {{ strCurrTimerState }} </v-col>
       <v-col cols="12"> Time remaining: {{ formatElapsedTime() }} </v-col>
     </v-row>
-    <v-row v-if="!isTimerDone">
+    <v-row v-if="!isTimerElapsed">
       <v-col
         ><v-btn variant="tonal" size="large" @click="togglePause">{{
           playPauseButtonLabel
@@ -12,7 +12,7 @@
       >
     </v-row>
     <br />
-    <v-row v-if="isTimerDone">
+    <v-row v-if="isTimerElapsed">
       <v-col>
         <v-btn size="x-large" variant="outlined" @click="toggleTimerState"
           >Start {{ nextActionDuringTimerState }}!</v-btn
@@ -28,7 +28,7 @@ export default {
     this.startTimer();
   },
   watch: {
-    isTimerDone(v) {
+    isTimerElapsed(v) {
       if (v == true) {
         this.stopTimer();
         this.$emit("bring-to-front");
@@ -39,11 +39,11 @@ export default {
     playPauseButtonLabel() {
       return this.isPaused ? "Resume" : "Pause";
     },
-    isTimerDone() {
+    isTimerElapsed() {
       return this.secondsRemaining === 0;
     },
     strCurrTimerState() {
-      if (this.isTimerDone == true) {
+      if (this.isTimerElapsed == true) {
         return "Waiting for input.";
       }
       const res = this.isWorking ? "Working" : "Resting";
