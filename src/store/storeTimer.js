@@ -25,20 +25,45 @@ const store = new Vuex.Store({
         }, 1000);
       }
     },
-    toggleMode(state) {
+    toggleMode: async function (state) {
       const isWorking = state.isWorking;
       const restOrWorkDuration = isWorking ? "restDuration" : "workDuration";
 
       // Clear existing interval before starting a new one
       clearInterval(state.intervalId);
 
-      SettingsController.getSpecificSetting(restOrWorkDuration).then(
-        (duration) => {
-          state.secondsRemaining = duration;
-          state.isWorking = !isWorking;
+      try {
+        const duration = await SettingsController.getSpecificSetting(
+          restOrWorkDuration
+        );
+        state.secondsRemaining = duration;
+        state.isWorking = !isWorking;
+
+        if (!state.isPaused) {
           store.commit("runOrPauseTimer");
         }
-      );
+      } catch (error) {
+        console.error("Error getting specific setting:", error);
+      }
+    },
+  },
+
+  getters: {
+    isTimerElapsed(state) {
+      return state.secondsRemaining === 0;
+    },
+    verb_playPauseButtonLabel(state) {
+      return state.isPaused ? "Resume" : "Pause";
+    },
+    strCurrTimerMode(state, getters) {
+      if (getters.isTimerElapsed) {
+        return "Waiting for input.";
+      }
+      const res = state.isWorking ? "Working" : "Resting";
+      return res.concat(" ...");
+    },
+    verb_nextMode(state) {
+      return state.isWorking ? "resting" : "working";
     },
   },
 });

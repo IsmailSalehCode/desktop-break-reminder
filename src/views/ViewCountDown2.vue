@@ -38,41 +38,33 @@ export default {
   },
   computed: {
     isTimerElapsed() {
-      return this.secondsRemaining === 0;
+      return this.$store.getters.isTimerElapsed;
     },
     verb_playPauseButtonLabel() {
-      return this.isPaused ? "Resume" : "Pause";
+      return this.$store.getters.verb_playPauseButtonLabel;
     },
     strCurrTimerMode() {
-      if (this.isTimerElapsed == true) {
-        return "Waiting for input.";
-      }
-      const res = this.isWorking ? "Working" : "Resting";
-      return res.concat(" ...");
+      return this.$store.getters.strCurrTimerMode;
     },
     verb_nextMode() {
-      return this.isWorking ? "resting" : "working";
+      return this.$store.getters.verb_nextMode;
+    },
+    isPaused() {
+      return this.$store.state.isPaused;
+    },
+    secondsRemaining() {
+      return this.$store.state.secondsRemaining;
+    },
+    isWorking() {
+      return this.$store.state.isWorking;
     },
   },
+
   data() {
     return {
-      secondsRemaining: this.$store.state.secondsRemaining,
-      isPaused: this.$store.state.isPaused,
-      isWorking: this.$store.state.isWorking,
       // settings: null,
       loadingToggleMode: false,
     };
-  },
-  watch: {
-    "$store.state.secondsRemaining": function (newValue) {
-      this.secondsRemaining = newValue;
-    },
-    "$store.state.isPaused": function (newIsPaused) {
-      this.isPaused = newIsPaused;
-    },
-    "$store.state.isWorking": function (newIsWorking) {
-      this.isWorking = newIsWorking;
-    },
   },
   methods: {
     async toggleTimerMode() {
