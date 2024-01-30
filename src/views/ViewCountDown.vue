@@ -22,11 +22,15 @@
   </v-container>
 </template>
 <script>
+import { SettingsController } from "../persistent-data/dbController";
+
 export default {
-  props: ["c_settings"],
   emits: ["bring-to-front", "max", "min", "get-all-settings"],
   mounted() {
-    this.startTimer();
+    this.getSettings();
+    setTimeout(() => {
+      this.startTimer();
+    }, 1000);
   },
   watch: {
     isTimerElapsed(v) {
@@ -72,7 +76,7 @@ export default {
       intervalId: 1,
       isWorking: true,
       isPaused: false,
-      settings: this.c_settings,
+      settings: null,
     };
   },
   methods: {
@@ -117,6 +121,9 @@ export default {
       return `${hours.toString().padStart(2, "0")} : ${minutes
         .toString()
         .padStart(2, "0")} : ${remainingSeconds.toString().padStart(2, "0")}`;
+    },
+    async getSettings() {
+      this.settings = await SettingsController.getAllSettings();
     },
   },
 };
