@@ -28,9 +28,9 @@ export default {
   emits: ["bring-to-front", "max", "min", "get-all-settings"],
   mounted() {
     this.getSettings();
-    setTimeout(() => {
-      this.startTimer();
-    }, 1000);
+    // setTimeout(() => {
+    //   this.startTimer();
+    // }, 1000);
   },
   watch: {
     isTimerElapsed(v) {
