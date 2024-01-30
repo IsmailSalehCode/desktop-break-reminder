@@ -1,41 +1,41 @@
 <template>
   <v-container fluid>
-    <v-form
-      :loading="loadingSettings"
-      ref="form"
-      @submit="updateSettings"
-      @submit.prevent
-    >
-      <v-text-field
-        class="PositiveNumberField"
-        label="Work duration (s)"
-        v-model="settings.workDuration"
-        :rules="rulesTimeDuration"
-      ></v-text-field>
-      <v-text-field
-        class="PositiveNumberField"
-        label="Rest duration (s)"
-        v-model="settings.restDuration"
-        :rules="rulesTimeDuration"
-      ></v-text-field>
-      <v-checkbox
-        density="compact"
-        v-model="settings.wantsMaxWhenTimerElapsed"
-        label="Maximize app window when timer has elapsed."
-      ></v-checkbox>
-      <v-checkbox
-        density="compact"
-        v-model="settings.wantsMinWhenTimerStart"
-        label="Minimize app window when timer starts."
-      ></v-checkbox>
-      <v-text-field
-        style="max-width: 200px"
-        v-model="settings.hexBackgroundColorWhenTimerElapsed"
-        label="Hex of BG upon timer elapse"
-        :rules="rulesHex"
-      ></v-text-field>
-      <v-btn variant="tonal" type="submit">Save & Apply</v-btn>
-    </v-form>
+    <div v-if="loadingSettings">
+      <h2>Loading... please wait.</h2>
+    </div>
+    <div v-if="!loadingSettings">
+      <v-form ref="form" @submit="updateSettings" @submit.prevent>
+        <v-text-field
+          class="PositiveNumberField"
+          label="Work duration (s)"
+          v-model="settings.workDuration"
+          :rules="rulesTimeDuration"
+        ></v-text-field>
+        <v-text-field
+          class="PositiveNumberField"
+          label="Rest duration (s)"
+          v-model="settings.restDuration"
+          :rules="rulesTimeDuration"
+        ></v-text-field>
+        <v-checkbox
+          density="compact"
+          v-model="settings.wantsMaxWhenTimerElapsed"
+          label="Maximize app window when timer has elapsed."
+        ></v-checkbox>
+        <v-checkbox
+          density="compact"
+          v-model="settings.wantsMinWhenTimerStart"
+          label="Minimize app window when timer starts."
+        ></v-checkbox>
+        <v-text-field
+          style="max-width: 200px"
+          v-model="settings.hexBackgroundColorWhenTimerElapsed"
+          label="Hex of BG upon timer elapse"
+          :rules="rulesHex"
+        ></v-text-field>
+        <v-btn variant="tonal" type="submit">Save & Apply</v-btn>
+      </v-form>
+    </div>
   </v-container>
 </template>
 <script>
@@ -53,7 +53,9 @@ export default {
   },
   methods: {
     async getSettings() {
+      this.loadingSettings = true;
       this.settings = await SettingsController.getAllSettings();
+      this.loadingSettings = false;
     },
     async updateSettings() {
       const { valid } = await this.$refs.form.validate();
