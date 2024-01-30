@@ -48,12 +48,13 @@ import {
 } from "../rules-fields/rules-common";
 
 export default {
-  props: ["c_settings"],
-  emits: ["get-all-settings"],
   mounted() {
-    this.$emit("get-all-settings");
+    this.getSettings();
   },
   methods: {
+    async getSettings() {
+      this.settings = await SettingsController.getAllSettings();
+    },
     async updateSettings() {
       const { valid } = await this.$refs.form.validate();
       if (valid) {
@@ -73,7 +74,7 @@ export default {
       loadingSettings: true,
       rulesTimeDuration: [required, isPositiveWholeNumber, isLessThanMaxNumber],
       rulesHex: [required, isValidHexCode],
-      settings: this.c_settings,
+      settings: null,
     };
   },
 };
