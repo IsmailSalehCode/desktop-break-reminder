@@ -6,7 +6,7 @@
     </v-row>
     <v-row v-if="!isTimerElapsed">
       <v-col
-        ><v-btn variant="tonal" size="large" @click="togglePause">{{
+        ><v-btn variant="tonal" size="large" @click="runOrPauseTimer">{{
           verb_playPauseButtonLabel
         }}</v-btn></v-col
       >
@@ -80,8 +80,8 @@ export default {
       await this.$store.commit("toggleMode");
       this.loadingToggleMode = false;
     },
-    togglePause() {
-      this.$store.commit("togglePause");
+    runOrPauseTimer() {
+      this.$store.commit("runOrPauseTimer");
     },
     formatElapsedTime() {
       // Calculate hours, minutes, and remaining seconds
