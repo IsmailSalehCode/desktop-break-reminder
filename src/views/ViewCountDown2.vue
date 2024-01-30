@@ -32,15 +32,6 @@ export default {
     //   this.startTimer();
     // }, 1000);
   },
-  //Handled by store...   watch: {
-  //     isTimerElapsed(v) {
-  //       if (v == true) {
-  //         this.stopTimer();
-  //         this.$emit("bring-to-front");
-  //         // this.$emit("max");
-  //       }
-  //     },
-  //   },
   computed: {
     isTimerElapsed() {
       return this.secondsRemaining === 0;
