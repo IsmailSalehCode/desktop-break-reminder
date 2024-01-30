@@ -9,52 +9,36 @@ const store = new Vuex.Store({
     intervalId: null,
   },
   mutations: {
-    runTimer(state) {
-      state.isPaused = false;
-      state.intervalId = setInterval(() => {
-        if (state.secondsRemaining > 0) {
-          state.secondsRemaining--;
-        } else {
-          store.commit("togglePause");
-        }
-      }, 1000);
-    },
-    pauseTimer(state) {
-      state.isPaused = true;
-      clearInterval(state.intervalId);
-    },
-    togglePause(state) {
-      const isPaused = state.isPaused;
-      if (!isPaused) {
-        store.commit("pauseTimer");
+    runOrPauseTimer(state) {
+      state.isPaused = !state.isPaused;
+
+      if (state.isPaused) {
+        clearInterval(state.intervalId);
       } else {
-        store.commit("runTimer");
+        state.intervalId = setInterval(() => {
+          if (state.secondsRemaining > 0) {
+            state.secondsRemaining--;
+          } else {
+            clearInterval(state.intervalId);
+            state.isPaused = true;
+          }
+        }, 1000);
       }
     },
-    async toggleMode(state) {
+    toggleMode(state) {
       const isWorking = state.isWorking;
-      if (isWorking) {
-        const restDuration = await SettingsController.getSpecificSetting(
-          "restDuration"
-        );
-        state.secondsRemaining = restDuration;
-      } else {
-        const workDuration = await SettingsController.getSpecificSetting(
-          "workDuration"
-        );
-        state.secondsRemaining = workDuration;
-      }
-      state.isWorking = !state.isWorking;
-      store.commit("runTimer");
-    },
-    // initTimer(state, inputDuration) {
-    //   state.secondsRemaining = inputDuration;
-    //   store.commit("runTimer");
-    // },
-  },
-  getters: {
-    async getRestDuration() {
-      this.settings = await SettingsController.getAllSettings();
+      const restOrWorkDuration = isWorking ? "restDuration" : "workDuration";
+
+      // Clear existing interval before starting a new one
+      clearInterval(state.intervalId);
+
+      SettingsController.getSpecificSetting(restOrWorkDuration).then(
+        (duration) => {
+          state.secondsRemaining = duration;
+          state.isWorking = !isWorking;
+          store.commit("runOrPauseTimer");
+        }
+      );
     },
   },
 });
