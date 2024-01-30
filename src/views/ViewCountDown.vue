@@ -26,7 +26,6 @@ export default {
   props: ["c_settings"],
   emits: ["bring-to-front", "max", "min", "get-all-settings"],
   mounted() {
-    this.$emit("get-all-settings");
     this.startTimer();
   },
   watch: {
