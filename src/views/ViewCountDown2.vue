@@ -14,7 +14,11 @@
     <br />
     <v-row v-if="isTimerElapsed">
       <v-col>
-        <v-btn size="x-large" variant="outlined" @click="toggleTimerMode"
+        <v-btn
+          size="x-large"
+          variant="outlined"
+          :loadingToggleMode="loadingToggleMode"
+          @click="toggleTimerMode"
           >Start {{ verb_nextMode }}!</v-btn
         >
       </v-col>
@@ -22,12 +26,12 @@
   </v-container>
 </template>
 <script>
-import { SettingsController } from "../persistent-data/dbController";
+// import { SettingsController } from "../persistent-data/dbController";
 
 export default {
   emits: ["bring-to-front", "max", "min"],
   mounted() {
-    this.getSettings();
+    // this.getSettings();
     // setTimeout(() => {
     //   this.startTimer();
     // }, 1000);
@@ -49,19 +53,14 @@ export default {
     verb_nextMode() {
       return this.isWorking ? "resting" : "working";
     },
-    secondsWorkDuration() {
-      return this.settings.workDuration;
-    },
-    secondsRestDuration() {
-      return this.settings.restDuration;
-    },
   },
   data() {
     return {
       secondsRemaining: this.$store.state.secondsRemaining,
       isPaused: this.$store.state.isPaused,
-      isWorking: true,
-      settings: null,
+      isWorking: this.$store.state.isWorking,
+      // settings: null,
+      loadingToggleMode: false,
     };
   },
   watch: {
@@ -71,16 +70,15 @@ export default {
     "$store.state.isPaused": function (newIsPaused) {
       this.isPaused = newIsPaused;
     },
+    "$store.state.isWorking": function (newIsWorking) {
+      this.isWorking = newIsWorking;
+    },
   },
   methods: {
-    toggleTimerMode() {
-      const isWorking = this.isWorking;
-      if (isWorking) {
-        this.$store.commit("initTimer", this.secondsRestDuration);
-      } else {
-        this.$store.commit("initTimer", this.secondsWorkDuration);
-      }
-      this.isWorking = !this.isWorking;
+    async toggleTimerMode() {
+      this.loadingToggleMode = true;
+      await this.$store.commit("toggleMode");
+      this.loadingToggleMode = false;
     },
     togglePause() {
       this.$store.commit("togglePause");
@@ -96,9 +94,9 @@ export default {
         .toString()
         .padStart(2, "0")} : ${remainingSeconds.toString().padStart(2, "0")}`;
     },
-    async getSettings() {
-      this.settings = await SettingsController.getAllSettings();
-    },
+    // async getSettings() {
+    //   this.settings = await SettingsController.getAllSettings();
+    // },
   },
 };
 </script>

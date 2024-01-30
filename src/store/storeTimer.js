@@ -1,10 +1,10 @@
 import Vuex from "vuex";
+import { SettingsController } from "../persistent-data/dbController";
 
 const store = new Vuex.Store({
   state: {
     secondsRemaining: 0,
-    // 1-working, 0-resting
-    // mode: 1, maybe leave that to vue component?
+    isWorking: 1,
     isPaused: false,
     intervalId: null,
   },
@@ -31,9 +31,30 @@ const store = new Vuex.Store({
         store.commit("runTimer");
       }
     },
-    initTimer(state, inputDuration) {
-      state.secondsRemaining = inputDuration;
+    async toggleMode(state) {
+      const isWorking = state.isWorking;
+      if (isWorking) {
+        const restDuration = await SettingsController.getSpecificSetting(
+          "restDuration"
+        );
+        state.secondsRemaining = restDuration;
+      } else {
+        const workDuration = await SettingsController.getSpecificSetting(
+          "workDuration"
+        );
+        state.secondsRemaining = workDuration;
+      }
+      state.isWorking = !state.isWorking;
       store.commit("runTimer");
+    },
+    // initTimer(state, inputDuration) {
+    //   state.secondsRemaining = inputDuration;
+    //   store.commit("runTimer");
+    // },
+  },
+  getters: {
+    async getRestDuration() {
+      this.settings = await SettingsController.getAllSettings();
     },
   },
 });
