@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import ViewCountDown from "../views/ViewCountDown.vue";
+import ViewCountDown from "../views/ViewCountDown2.vue";
 import ViewManageSettings from "../views/ViewManageSettings.vue";
 
 const routes = [
