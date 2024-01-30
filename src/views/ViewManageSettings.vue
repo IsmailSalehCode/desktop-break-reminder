@@ -48,19 +48,12 @@ import {
 } from "../rules-fields/rules-common";
 
 export default {
+  props: ["c_settings"],
+  emits: ["get-all-settings"],
   mounted() {
-    this.getAllSettings();
+    this.$emit("get-all-settings");
   },
   methods: {
-    async getAllSettings() {
-      this.loadingSettings = true;
-      try {
-        this.settings = await SettingsController.getAllSettings();
-      } catch (err) {
-        console.error(err);
-      }
-      this.loadingSettings = false;
-    },
     async updateSettings() {
       const { valid } = await this.$refs.form.validate();
       if (valid) {
@@ -80,13 +73,7 @@ export default {
       loadingSettings: true,
       rulesTimeDuration: [required, isPositiveWholeNumber, isLessThanMaxNumber],
       rulesHex: [required, isValidHexCode],
-      settings: {
-        workDuration: 0,
-        restDuration: 0,
-        wantsMaxWhenTimerElapsed: false,
-        wantsMinWhenTimerStart: false,
-        hexBackgroundColorWhenTimerElapsed: "",
-      },
+      settings: this.c_settings,
     };
   },
 };

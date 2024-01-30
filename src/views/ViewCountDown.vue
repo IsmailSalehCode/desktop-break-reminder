@@ -23,8 +23,10 @@
 </template>
 <script>
 export default {
-  emits: ["bring-to-front", "max", "min"],
+  props: ["c_settings"],
+  emits: ["bring-to-front", "max", "min", "get-all-settings"],
   mounted() {
+    this.$emit("get-all-settings");
     this.startTimer();
   },
   watch: {
@@ -32,7 +34,7 @@ export default {
       if (v == true) {
         this.stopTimer();
         this.$emit("bring-to-front");
-        this.$emit("max");
+        // this.$emit("max");
       }
     },
   },
@@ -58,15 +60,20 @@ export default {
         ? this.secondsWorkDuration
         : this.secondsRestDuration;
     },
+    secondsWorkDuration() {
+      return this.settings.workDuration;
+    },
+    secondsRestDuration() {
+      return this.settings.restDuration;
+    },
   },
   data() {
     return {
       secondsRemaining: 0,
       intervalId: 1,
       isWorking: true,
-      secondsWorkDuration: 5,
-      secondsRestDuration: 2,
       isPaused: false,
+      settings: this.c_settings,
     };
   },
   methods: {
@@ -75,7 +82,7 @@ export default {
       this.intervalId = setInterval(() => {
         this.secondsRemaining--;
       }, 1000);
-      this.$emit("min");
+      // this.$emit("min");
     },
     togglePause() {
       if (!this.isPaused) {
