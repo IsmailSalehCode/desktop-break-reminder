@@ -37,6 +37,8 @@
       </v-form>
     </div>
   </v-container>
+  <!-- todo: hex color picker field -->
+  <!-- todo: add hexBackgroundColorWhileTimerRunning field -->
 </template>
 <script>
 import { SettingsController } from "../persistent-data/dbController";

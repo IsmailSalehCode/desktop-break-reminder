@@ -31,12 +31,11 @@
 </template>
 <script>
 export default {
-  emits: ["bring-to-front", "max", "min"],
+  emits: ["timer-started", "timer-elapsed"], //todo emit timer-started
   watch: {
     isTimerElapsed(v) {
       if (v == true) {
-        this.$emit("bring-to-front");
-        this.$emit("max");
+        this.$emit("timer-elapsed");
       }
     },
   },

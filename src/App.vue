@@ -1,11 +1,10 @@
 <template>
-  <v-app theme="dark">
+  <v-app theme="dark" ref="appContainer">
     <AppBar />
     <v-main>
       <router-view
-        @max="maximize"
-        @min="minimize"
-        @bring-to-front="bringToFront"
+        @timer-elapsed="onTimerElapsed"
+        @timer-started="onTimerStarted"
       ></router-view>
     </v-main>
     <AppFooter />
@@ -26,7 +25,32 @@ export default {
   async mounted() {
     await this.$store.dispatch("initWorkSeconds");
   },
+  data() {
+    return {
+      appHexBG: "default",
+    };
+  },
   methods: {
+    async onTimerStarted() {
+      const wantsMin = await this.get_wantsMinWhenTimerStart();
+      if (wantsMin) {
+        this.minimize();
+      }
+      const newHexCode = await this.get_hexBackgroundColorWhileTimerRunning();
+      this.changeHexBGColor(newHexCode);
+    },
+    async onTimerElapsed() {
+      this.bringToFront();
+      const wantsMax = await this.get_wantsMaxWhenTimerElapsed();
+      if (wantsMax) {
+        this.maximize();
+      }
+      const newHexCode = await this.get_hexBackgroundColorWhenTimerElapsed();
+      this.changeHexBGColor(newHexCode);
+    },
+    changeHexBGColor(newHexCode) {
+      this.$refs.appContainer.$el.style.backgroundColor = newHexCode;
+    },
     async getSetting(setting) {
       return await SettingsController.getSpecificSetting(setting);
     },
@@ -39,21 +63,17 @@ export default {
     async get_hexBackgroundColorWhenTimerElapsed() {
       return await this.getSetting("hexBackgroundColorWhenTimerElapsed");
     },
+    async get_hexBackgroundColorWhileTimerRunning() {
+      return await this.getSetting("hexBackgroundColorWhileTimerRunning");
+    },
     bringToFront() {
       window.electronAPI.bringMainWindowToFront();
     },
-    async maximize() {
-      const wantsMax = await this.get_wantsMaxWhenTimerElapsed();
-      console.log(wantsMax);
-      if (wantsMax) {
-        window.electronAPI.maximizeMainWindow();
-      }
+    maximize() {
+      window.electronAPI.maximizeMainWindow();
     },
-    async minimize() {
-      const wantsMin = await this.get_wantsMinWhenTimerStart();
-      if (wantsMin) {
-        window.electronAPI.minimizeMainWindow();
-      }
+    minimize() {
+      window.electronAPI.minimizeMainWindow();
     },
   },
 };
