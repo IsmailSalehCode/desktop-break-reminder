@@ -2,7 +2,7 @@
   <v-container style="text-align: center">
     <v-row class="text-expanding">
       <v-col cols="12"> Current mode: {{ strCurrTimerMode }} </v-col>
-      <v-col cols="12"> Time remaining: {{ formatElapsedTime() }} </v-col>
+      <v-col cols="12"> {{ formatElapsedTime() }} </v-col>
     </v-row>
     <v-row v-if="!isTimerElapsed">
       <v-col
