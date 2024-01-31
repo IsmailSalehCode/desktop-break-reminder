@@ -22,6 +22,9 @@ export default {
     // prevent blank page in Electron build
     this.$router.push("/");
   },
+  async mounted() {
+    await this.$store.dispatch("initWorkSeconds");
+  },
   methods: {
     bringToFront() {
       window.electronAPI.bringMainWindowToFront();

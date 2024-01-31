@@ -8,6 +8,19 @@ const store = new Vuex.Store({
     isPaused: false,
     intervalId: null,
   },
+  actions: {
+    async initWorkSeconds({ commit }) {
+      const workDuration = await SettingsController.getSpecificSetting(
+        "workDuration"
+      );
+      commit("setSecondsRemaining", workDuration);
+      //everything is set up but timer refuses to autostart. Even if isPaused=false :( . Проблемът е в runOrPauseTimer
+      // commit("runOrPauseTimer");
+
+      // commit("toggleMode");
+      //=======================
+    },
+  },
   mutations: {
     runOrPauseTimer(state) {
       state.isPaused = !state.isPaused;
@@ -36,7 +49,7 @@ const store = new Vuex.Store({
         const duration = await SettingsController.getSpecificSetting(
           restOrWorkDuration
         );
-        state.secondsRemaining = duration;
+        store.commit("setSecondsRemaining", duration);
         state.isWorking = !isWorking;
 
         if (!state.isPaused) {
@@ -46,8 +59,15 @@ const store = new Vuex.Store({
         console.error("Error getting specific setting:", error);
       }
     },
+    setSecondsRemaining(state, newDuration) {
+      state.secondsRemaining = newDuration;
+    },
   },
-
+  methods: {
+    async getWorkDuration() {
+      return await SettingsController.getSpecificSetting("workDuration");
+    },
+  },
   getters: {
     isTimerElapsed(state) {
       return state.secondsRemaining === 0;
