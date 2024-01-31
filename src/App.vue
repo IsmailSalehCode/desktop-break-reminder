@@ -1,5 +1,5 @@
 <template>
-  <v-app theme="dark" ref="appContainer">
+  <v-app ref="appContainer">
     <AppBar />
     <v-main>
       <router-view
