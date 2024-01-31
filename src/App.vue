@@ -15,6 +15,7 @@
 <script>
 import AppBar from "./components/AppBar.vue";
 import AppFooter from "./components/AppFooter.vue";
+import { SettingsController } from "./persistent-data/dbController";
 
 export default {
   components: { AppBar, AppFooter },
@@ -26,14 +27,33 @@ export default {
     await this.$store.dispatch("initWorkSeconds");
   },
   methods: {
+    async getSetting(setting) {
+      return await SettingsController.getSpecificSetting(setting);
+    },
+    async get_wantsMaxWhenTimerElapsed() {
+      return await this.getSetting("wantsMaxWhenTimerElapsed");
+    },
+    async get_wantsMinWhenTimerStart() {
+      return await this.getSetting("wantsMinWhenTimerStart");
+    },
+    async get_hexBackgroundColorWhenTimerElapsed() {
+      return await this.getSetting("hexBackgroundColorWhenTimerElapsed");
+    },
     bringToFront() {
       window.electronAPI.bringMainWindowToFront();
     },
-    maximize() {
-      window.electronAPI.maximizeMainWindow();
+    async maximize() {
+      const wantsMax = await this.get_wantsMaxWhenTimerElapsed();
+      console.log(wantsMax);
+      if (wantsMax) {
+        window.electronAPI.maximizeMainWindow();
+      }
     },
-    minimize() {
-      window.electronAPI.minimizeMainWindow();
+    async minimize() {
+      const wantsMin = await this.get_wantsMinWhenTimerStart();
+      if (wantsMin) {
+        window.electronAPI.minimizeMainWindow();
+      }
     },
   },
 };

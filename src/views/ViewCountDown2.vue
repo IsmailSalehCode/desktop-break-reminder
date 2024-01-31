@@ -32,6 +32,14 @@
 <script>
 export default {
   emits: ["bring-to-front", "max", "min"],
+  watch: {
+    isTimerElapsed(v) {
+      if (v == true) {
+        this.$emit("bring-to-front");
+        this.$emit("max");
+      }
+    },
+  },
   computed: {
     isTimerElapsed() {
       return this.$store.getters.isTimerElapsed;
