@@ -30,8 +30,6 @@
   </v-container>
 </template>
 <script>
-// import { SettingsController } from "../persistent-data/dbController";
-
 export default {
   emits: ["bring-to-front", "max", "min"],
   computed: {
