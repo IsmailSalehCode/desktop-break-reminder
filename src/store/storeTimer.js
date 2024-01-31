@@ -79,9 +79,15 @@ const store = new Vuex.Store({
       if (getters.isTimerElapsed) {
         return "Waiting for input.";
       }
-      const res = state.isWorking ? "Working" : "Resting";
-      const activeMode = res.concat(" ...");
-      return state.isPaused ? res : activeMode;
+      let result = state.isWorking ? "Work" : "Rest";
+      const isPaused = state.isPaused;
+
+      if (isPaused) {
+        result = result.concat(".");
+      } else {
+        result = result.concat("ing ...");
+      }
+      return result;
     },
     verb_nextMode(state) {
       return state.isWorking ? "resting" : "working";
