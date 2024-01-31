@@ -63,11 +63,6 @@ const store = new Vuex.Store({
       state.secondsRemaining = newDuration;
     },
   },
-  methods: {
-    async getWorkDuration() {
-      return await SettingsController.getSpecificSetting("workDuration");
-    },
-  },
   getters: {
     isTimerElapsed(state) {
       return state.secondsRemaining === 0;
