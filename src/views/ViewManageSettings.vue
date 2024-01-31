@@ -41,7 +41,6 @@
   <!-- todo: add bgHexTimerRunning field -->
 </template>
 <script>
-import { SettingsController } from "../persistent-data/dbController";
 import {
   required,
   isPositiveWholeNumber,
@@ -56,19 +55,14 @@ export default {
   methods: {
     async getSettings() {
       this.loadingSettings = true;
-      this.settings = await SettingsController.getAllSettings();
+      this.settings = await this.$store.dispatch("getSettings");
       this.loadingSettings = false;
     },
     async updateSettings() {
       const { valid } = await this.$refs.form.validate();
       if (valid) {
-        this.loadingSettings = true;
-        const result = await SettingsController.updateSettings(this.settings);
-        if (result instanceof Error) {
-          console.error(result);
-        } else {
-          window.electronAPI.showAlert("Settings have been updated.");
-        }
+        this.loadingSettings = true; //todo better loading indication
+        await this.$store.dispatch("updateSettings", this.settings);
         this.loadingSettings = false;
       }
     },

@@ -107,11 +107,14 @@ app.whenReady().then(() => {
     }
   });
 
-  ipcMain.on("show-alert", (event, message) => {
+  ipcMain.on("show-alert", (event, type, message) => {
+    /**
+     * Can be none, info, error, question or warning. On Windows, question displays the same icon as info, unless you set an icon using the icon option. On macOS, both warning and error display the same warning icon.
+     */
     dialog.showMessageBoxSync({
-      type: "info",
+      type: type,
       message: message,
-      buttons: ["Cool"],
+      buttons: ["Ok"],
     });
   });
 

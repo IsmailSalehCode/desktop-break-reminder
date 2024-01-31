@@ -1,18 +1,45 @@
 import Vuex from "vuex";
 import { SettingsController } from "../persistent-data/dbController";
 
+function handleError(err) {
+  console.error(err);
+  showAlert("error", err.message);
+}
+
+function showAlert(type, msg) {
+  window.electronAPI.showAlert(type, msg);
+}
+
 const store = new Vuex.Store({
   state: {
     secondsRemaining: 0,
     isWorking: 1,
     isPaused: true,
     intervalId: null,
+    settings: {},
   },
   actions: {
+    async getSettings({ commit }) {
+      try {
+        const newSettings = await SettingsController.getAllSettings();
+        commit("setSettings", newSettings);
+        return this.getters.settings;
+      } catch (err) {
+        handleError(err);
+      }
+    },
+    async updateSettings({ commit }, newSettings) {
+      try {
+        await SettingsController.updateSettings(newSettings);
+        commit("setSettings", newSettings);
+        showAlert("info", "Done!");
+      } catch (err) {
+        handleError(err);
+      }
+    },
     async initWorkSeconds({ commit }) {
-      const workDuration = await SettingsController.getSpecificSetting(
-        "workDuration"
-      );
+      await this.dispatch("getSettings");
+      const workDuration = this.getters.settings.workDuration;
       commit("setSecondsRemaining", workDuration);
       //everything is set up but timer refuses to autostart. Even if isPaused=false :( . Проблемът е в runOrPauseTimer
       // commit("runOrPauseTimer");
@@ -22,6 +49,9 @@ const store = new Vuex.Store({
     },
   },
   mutations: {
+    setSettings(state, newSettings) {
+      state.settings = newSettings;
+    },
     runOrPauseTimer(state) {
       state.isPaused = !state.isPaused;
 
@@ -64,6 +94,9 @@ const store = new Vuex.Store({
     },
   },
   getters: {
+    settings(state) {
+      return state.settings;
+    },
     isTimerElapsed(state) {
       return state.secondsRemaining === 0;
     },
