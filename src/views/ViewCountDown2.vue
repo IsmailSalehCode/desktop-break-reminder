@@ -6,9 +6,13 @@
     </v-row>
     <v-row v-if="!isTimerElapsed">
       <v-col
-        ><v-btn variant="tonal" size="large" @click="runOrPauseTimer">{{
-          verb_playPauseButtonLabel
-        }}</v-btn></v-col
+        ><v-btn
+          variant="tonal"
+          size="large"
+          @click="runOrPauseTimer"
+          style="font-family: cursive, monospace"
+          >{{ verb_playPauseButtonLabel }}</v-btn
+        ></v-col
       >
     </v-row>
     <br />

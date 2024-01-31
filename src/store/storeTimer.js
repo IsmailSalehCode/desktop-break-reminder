@@ -53,7 +53,7 @@ const store = new Vuex.Store({
       return state.secondsRemaining === 0;
     },
     verb_playPauseButtonLabel(state) {
-      return state.isPaused ? "Resume" : "Pause";
+      return state.isPaused ? "▶" : "||";
     },
     strCurrTimerMode(state, getters) {
       if (getters.isTimerElapsed) {
