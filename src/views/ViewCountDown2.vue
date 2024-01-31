@@ -34,12 +34,6 @@
 
 export default {
   emits: ["bring-to-front", "max", "min"],
-  mounted() {
-    // this.getSettings();
-    // setTimeout(() => {
-    //   this.startTimer();
-    // }, 1000);
-  },
   computed: {
     isTimerElapsed() {
       return this.$store.getters.isTimerElapsed;

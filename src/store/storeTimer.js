@@ -5,7 +5,7 @@ const store = new Vuex.Store({
   state: {
     secondsRemaining: 0,
     isWorking: 1,
-    isPaused: false,
+    isPaused: true,
     intervalId: null,
   },
   actions: {
