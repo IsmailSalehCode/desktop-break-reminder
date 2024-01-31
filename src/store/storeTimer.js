@@ -19,6 +19,13 @@ const store = new Vuex.Store({
     settings: {},
   },
   actions: {
+    async getSpecificSetting(settingName) {
+      try {
+        return await SettingsController.getSpecificSetting(settingName);
+      } catch (err) {
+        handleError(err);
+      }
+    },
     async getSettings({ commit }) {
       try {
         const newSettings = await SettingsController.getAllSettings();
