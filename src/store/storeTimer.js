@@ -90,7 +90,8 @@ const store = new Vuex.Store({
       return result;
     },
     verb_nextMode(state) {
-      return state.isWorking ? "resting" : "working";
+      let result = state.isWorking ? "resting" : "working";
+      return result;
     },
   },
 });

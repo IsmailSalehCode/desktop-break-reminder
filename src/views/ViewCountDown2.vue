@@ -23,7 +23,7 @@
           variant="outlined"
           :loadingToggleMode="loadingToggleMode"
           @click="toggleTimerMode"
-          >Start {{ verb_nextMode }}!</v-btn
+          >Switch to {{ verb_nextMode }}!</v-btn
         >
       </v-col>
     </v-row>
