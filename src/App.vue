@@ -4,7 +4,8 @@
     <v-main>
       <router-view
         @timer-elapsed="onTimerElapsed"
-        @timer-started="onTimerStarted"
+        @timer-running="onTimerRunning"
+        @timer-paused="onTimerPaused"
       ></router-view>
     </v-main>
     <AppFooter />
@@ -31,13 +32,17 @@ export default {
     };
   },
   methods: {
-    async onTimerStarted() {
+    async onTimerRunning() {
       const wantsMin = await this.get_wantsMinWhenTimerStart();
       if (wantsMin) {
         this.minimize();
       }
-      const newHexCode = await this.get_hexBackgroundColorWhileTimerRunning();
-      this.changeHexBGColor(newHexCode);
+      const bgHex = await this.getSetting("bgHexTimerRunning");
+      this.changeHexBGColor(bgHex);
+    },
+    async onTimerPaused() {
+      const bgHex = await this.getSetting("bgHexTimerPaused");
+      this.changeHexBGColor(bgHex);
     },
     async onTimerElapsed() {
       this.bringToFront();
@@ -45,8 +50,6 @@ export default {
       if (wantsMax) {
         this.maximize();
       }
-      const newHexCode = await this.get_hexBackgroundColorWhenTimerElapsed();
-      this.changeHexBGColor(newHexCode);
     },
     changeHexBGColor(newHexCode) {
       this.$refs.appContainer.$el.style.backgroundColor = newHexCode;
@@ -59,12 +62,6 @@ export default {
     },
     async get_wantsMinWhenTimerStart() {
       return await this.getSetting("wantsMinWhenTimerStart");
-    },
-    async get_hexBackgroundColorWhenTimerElapsed() {
-      return await this.getSetting("hexBackgroundColorWhenTimerElapsed");
-    },
-    async get_hexBackgroundColorWhileTimerRunning() {
-      return await this.getSetting("hexBackgroundColorWhileTimerRunning");
     },
     bringToFront() {
       window.electronAPI.bringMainWindowToFront();

@@ -31,11 +31,18 @@
 </template>
 <script>
 export default {
-  emits: ["timer-started", "timer-elapsed"], //todo emit timer-started
+  emits: ["timer-elapsed", "timer-paused", "timer-running"], //todo emit timer-started
   watch: {
     isTimerElapsed(v) {
       if (v == true) {
         this.$emit("timer-elapsed");
+      }
+    },
+    isPaused(v) {
+      if (v == true) {
+        this.$emit("timer-paused");
+      } else {
+        this.$emit("timer-running");
       }
     },
   },

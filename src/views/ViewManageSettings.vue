@@ -29,8 +29,8 @@
         ></v-checkbox>
         <v-text-field
           style="max-width: 200px"
-          v-model="settings.hexBackgroundColorWhenTimerElapsed"
-          label="Hex of BG upon timer elapse"
+          v-model="settings.bgHexTimerPaused"
+          label="BG color when timer paused."
           :rules="rulesHex"
         ></v-text-field>
         <v-btn variant="tonal" type="submit">Save & Apply</v-btn>
@@ -38,7 +38,7 @@
     </div>
   </v-container>
   <!-- todo: hex color picker field -->
-  <!-- todo: add hexBackgroundColorWhileTimerRunning field -->
+  <!-- todo: add bgHexTimerRunning field -->
 </template>
 <script>
 import { SettingsController } from "../persistent-data/dbController";

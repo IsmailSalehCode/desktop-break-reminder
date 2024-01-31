@@ -1,9 +1,9 @@
 import Dexie from "dexie";
 
 export const db = new Dexie("mainDB");
-db.version(2).stores({
+db.version(3).stores({
   settings:
-    "++id,workDuration, restDuration, wantsMaxWhenTimerElapsed, wantsMinWhenTimerStart, hexBackgroundColorWhenTimerElapsed,hexBackgroundColorWhileTimerRunning",
+    "++id,workDuration, restDuration, wantsMaxWhenTimerElapsed, wantsMinWhenTimerStart, bgHexTimerPaused,bgHexTimerRunning",
 });
 
 async function isSettingsTableEmpty() {
@@ -17,8 +17,8 @@ async function createDefaultRow() {
     restDuration: 5,
     wantsMaxWhenTimerElapsed: false,
     wantsMinWhenTimerStart: false,
-    hexBackgroundColorWhenTimerElapsed: "#800000",
-    hexBackgroundColorWhileTimerRunning: "#232628",
+    bgHexTimerPaused: "#228B22",
+    bgHexTimerRunning: "#FF0000",
   });
 }
 
