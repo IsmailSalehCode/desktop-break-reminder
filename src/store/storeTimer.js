@@ -60,7 +60,8 @@ const store = new Vuex.Store({
         return "Waiting for input.";
       }
       const res = state.isWorking ? "Working" : "Resting";
-      return res.concat(" ...");
+      const activeMode = res.concat(" ...");
+      return state.isPaused ? res : activeMode;
     },
     verb_nextMode(state) {
       return state.isWorking ? "resting" : "working";
