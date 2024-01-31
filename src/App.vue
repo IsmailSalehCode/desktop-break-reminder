@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     async onTimerRunning() {
-      const wantsMin = await this.get_wantsMinWhenTimerStart();
+      const wantsMin = await this.getSetting("wantsMinWhenTimerStart");
       if (wantsMin) {
         this.minimize();
       }
@@ -46,7 +46,7 @@ export default {
     },
     async onTimerElapsed() {
       this.bringToFront();
-      const wantsMax = await this.get_wantsMaxWhenTimerElapsed();
+      const wantsMax = await this.getSetting("wantsMaxWhenTimerElapsed");
       if (wantsMax) {
         this.maximize();
       }
@@ -56,12 +56,6 @@ export default {
     },
     async getSetting(setting) {
       return await SettingsController.getSpecificSetting(setting);
-    },
-    async get_wantsMaxWhenTimerElapsed() {
-      return await this.getSetting("wantsMaxWhenTimerElapsed");
-    },
-    async get_wantsMinWhenTimerStart() {
-      return await this.getSetting("wantsMinWhenTimerStart");
     },
     bringToFront() {
       window.electronAPI.bringMainWindowToFront();

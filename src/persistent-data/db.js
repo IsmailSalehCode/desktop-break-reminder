@@ -1,7 +1,7 @@
 import Dexie from "dexie";
 
 export const db = new Dexie("mainDB");
-db.version(3).stores({
+db.version(4).stores({
   settings:
     "++id,workDuration, restDuration, wantsMaxWhenTimerElapsed, wantsMinWhenTimerStart, bgHexTimerPaused,bgHexTimerRunning",
 });
