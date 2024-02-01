@@ -121,11 +121,11 @@ export default {
 
 <style scoped>
 .text-expanding {
-  font-size: 35px;
+  font-size: 40px;
 }
 @media screen and (min-width: 900px) {
   .text-expanding {
-    font-size: 4vw;
+    font-size: 5vw;
   }
 }
 @media screen and (max-width: 320px) {
