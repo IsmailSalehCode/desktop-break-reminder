@@ -22,7 +22,7 @@ const store = new Vuex.Store({
     async replayTimer({ commit }) {
       const isWorking = this.getters.isWorking;
 
-      await this.dispatch("getSettings");
+      // await this.dispatch("getSettings"); redundant because each update, settings' state is refreshed
 
       let newDuration;
       if (isWorking) {
