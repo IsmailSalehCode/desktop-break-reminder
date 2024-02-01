@@ -10,12 +10,12 @@
         <v-checkbox
           density="compact"
           v-model="settings.wantsMaxWhenTimerElapsed"
-          label="Maximize app window when timer has elapsed."
+          label="Maximize upon timer elapse."
         ></v-checkbox>
         <v-checkbox
           density="compact"
           v-model="settings.wantsMinWhenTimerStart"
-          label="Minimize app window when timer starts."
+          label="Minimize when timer starts."
         ></v-checkbox>
         <v-text-field
           style="max-width: 200px"

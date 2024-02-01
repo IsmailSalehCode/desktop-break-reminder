@@ -1,8 +1,10 @@
 <template>
   <v-container style="text-align: center">
-    <v-row class="text-expanding">
+    <v-row>
       <v-col cols="12"> Current mode: {{ strCurrTimerMode }} </v-col>
-      <v-col cols="12"> {{ formatElapsedTime() }} </v-col>
+      <v-col cols="12" class="text-expanding">
+        {{ formatElapsedTime() }}
+      </v-col>
     </v-row>
     <v-row v-if="!isTimerElapsed" style="justify-content: center">
       <v-col class="containerTimerControl">
@@ -119,12 +121,16 @@ export default {
 
 <style scoped>
 .text-expanding {
-  font-size: 4vw;
+  font-size: 35px;
 }
-
+@media screen and (min-width: 900px) {
+  .text-expanding {
+    font-size: 4vw;
+  }
+}
 @media screen and (max-width: 320px) {
   .text-expanding {
-    font-size: 12px;
+    font-size: 2em;
   }
 }
 
