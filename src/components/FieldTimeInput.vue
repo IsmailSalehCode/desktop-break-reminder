@@ -47,37 +47,49 @@
     <v-row>
       <v-col class="label-FTI"> {{ label }} </v-col>
       <v-col>
-        <label>Hours:</label>
-        <input
+        <v-text-field
+          variant="underlined"
+          class="two-digit-field"
+          label="Hours"
+          density="compact"
           v-model="hours"
           type="number"
           min="0"
           max="99"
           @input="updateTotalSeconds"
+          hide-details
         />
       </v-col>
       <v-col>
-        <label>Minutes:</label>
-        <input
+        <v-text-field
+          variant="underlined"
+          class="two-digit-field"
+          label="Minutes"
+          density="compact"
           v-model="minutes"
           type="number"
           min="0"
           max="59"
           @input="updateTotalSeconds"
+          hide-details
         />
       </v-col>
       <v-col>
-        <label>Seconds:</label>
-        <input
+        <v-text-field
+          variant="underlined"
+          class="two-digit-field"
+          label="Seconds"
+          density="compact"
           v-model="seconds"
           type="number"
           min="0"
           max="59"
           @input="updateTotalSeconds"
+          hide-details
         />
       </v-col>
-      <p>Total Seconds: {{ totalSeconds }}</p>
     </v-row>
+    <p>Total Seconds: {{ totalSeconds }}</p>
   </v-container>
 </template>
 <script>
@@ -130,11 +142,9 @@ export default {
 </script>
 <style scoped>
 .two-digit-field {
-  max-width: 50px;
+  width: 100px;
 }
 .label-FTI {
   max-width: fit-content;
-  margin-top: auto;
-  padding-bottom: 0px;
 }
 </style>
