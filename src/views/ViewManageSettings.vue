@@ -5,18 +5,7 @@
     </div>
     <div v-if="!loadingSettings">
       <v-form ref="form" @submit="updateSettings" @submit.prevent>
-        <v-text-field
-          class="PositiveNumberField"
-          label="Work duration (s)"
-          v-model="settings.workDuration"
-          :rules="rulesTimeDuration"
-        ></v-text-field>
-        <!-- <v-text-field
-          class="PositiveNumberField"
-          label="Rest duration (s)"
-          v-model="settings.restDuration"
-          :rules="rulesTimeDuration"
-        ></v-text-field> -->
+        <FieldTimeInput v-model="settings.workDuration" label="Work duration" />
         <FieldTimeInput v-model="settings.restDuration" label="Rest duration" />
         <v-checkbox
           density="compact"
