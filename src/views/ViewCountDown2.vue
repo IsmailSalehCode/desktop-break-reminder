@@ -5,7 +5,8 @@
       <v-col cols="12"> {{ formatElapsedTime() }} </v-col>
     </v-row>
     <v-row v-if="!isTimerElapsed" style="justify-content: center">
-      <v-col style="max-width: fit-content">
+      <v-col class="containerTimerControl"> </v-col>
+      <v-col class="containerTimerControl">
         <v-btn
           variant="tonal"
           size="large"
@@ -14,7 +15,7 @@
           :icon="icon_playPause"
         ></v-btn>
       </v-col>
-      <v-col style="max-width: fit-content">
+      <v-col class="containerTimerControl">
         <v-btn
           variant="tonal"
           size="large"
@@ -123,5 +124,9 @@ export default {
   .text-expanding {
     font-size: 12px;
   }
+}
+
+.containerTimerControl {
+  max-width: fit-content;
 }
 </style>
