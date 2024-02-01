@@ -39,7 +39,7 @@
 </template>
 <script>
 export default {
-  emits: ["timer-elapsed", "timer-paused", "timer-running"], //todo emit timer-started
+  emits: ["timer-elapsed", "timer-paused", "timer-running"],
   watch: {
     isTimerElapsed(v) {
       if (v == true) {

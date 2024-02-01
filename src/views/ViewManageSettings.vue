@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <div v-if="loadingSettings">
-      <h2>Loading... please wait.</h2>
+      <h2>Loading...</h2>
     </div>
     <div v-if="!loadingSettings">
       <v-form ref="form" @submit="updateSettings" @submit.prevent>
