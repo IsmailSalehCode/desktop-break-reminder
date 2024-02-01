@@ -25,7 +25,6 @@ export const SettingsController = {
 
   updateSettings: async (newSettings) => {
     try {
-      console.log(newSettings);
       await db.settings.update(settingsRowId, newSettings);
     } catch (error) {
       console.error("Error updating settings:", error);
