@@ -4,16 +4,24 @@
       <v-col cols="12"> Current mode: {{ strCurrTimerMode }} </v-col>
       <v-col cols="12"> {{ formatElapsedTime() }} </v-col>
     </v-row>
-    <v-row v-if="!isTimerElapsed">
-      <v-col
-        ><v-btn
+    <v-row v-if="!isTimerElapsed" style="justify-content: center">
+      <v-col style="max-width: fit-content">
+        <v-btn
           variant="tonal"
           size="large"
           @click="runOrPauseTimer"
           style="font-family: cursive, monospace"
-          >{{ verb_playPauseButtonLabel }}</v-btn
-        ></v-col
-      >
+          :icon="icon_playPause"
+        ></v-btn>
+      </v-col>
+      <v-col style="max-width: fit-content">
+        <v-btn
+          variant="tonal"
+          size="large"
+          @click="forceElapseTimer"
+          icon="mdi-fast-forward"
+        ></v-btn>
+      </v-col>
     </v-row>
     <br />
     <v-row v-if="isTimerElapsed">
@@ -50,8 +58,8 @@ export default {
     isTimerElapsed() {
       return this.$store.getters.isTimerElapsed;
     },
-    verb_playPauseButtonLabel() {
-      return this.$store.getters.verb_playPauseButtonLabel;
+    icon_playPause() {
+      return this.$store.getters.icon_playPause;
     },
     strCurrTimerMode() {
       return this.$store.getters.strCurrTimerMode;
@@ -77,6 +85,9 @@ export default {
     };
   },
   methods: {
+    forceElapseTimer() {
+      this.$store.commit("setSecondsRemaining", 0);
+    },
     async toggleTimerMode() {
       this.loadingToggleMode = true;
       await this.$store.commit("toggleMode");

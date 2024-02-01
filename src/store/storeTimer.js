@@ -107,8 +107,8 @@ const store = new Vuex.Store({
     isTimerElapsed(state) {
       return state.secondsRemaining === 0;
     },
-    verb_playPauseButtonLabel(state) {
-      return state.isPaused ? "▶" : "||";
+    icon_playPause(state) {
+      return state.isPaused ? "mdi-play" : "mdi-pause";
     },
     strCurrTimerMode(state, getters) {
       if (getters.isTimerElapsed) {
