@@ -61,11 +61,6 @@ const store = new Vuex.Store({
       await this.dispatch("getSettings");
       const workDuration = this.getters.settings.workDuration;
       commit("setSecondsRemaining", workDuration);
-      //everything is set up but timer refuses to autostart. Even if isPaused=false :( . Проблемът е в runOrPauseTimer
-      // commit("runOrPauseTimer");
-
-      // commit("toggleMode");
-      //=======================
     },
   },
   mutations: {
