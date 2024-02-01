@@ -43,8 +43,8 @@
   </v-container>
 </template> -->
 <template>
-  <v-container>
-    <v-row>
+  <v-container style="max-width: fit-content">
+    <v-row no-gutters>
       <v-col class="label-FTI"> {{ label }} </v-col>
       <v-col>
         <v-text-field
@@ -60,6 +60,7 @@
           hide-details
         />
       </v-col>
+      <v-col class="time-field-delimiter">:</v-col>
       <v-col>
         <v-text-field
           variant="underlined"
@@ -74,6 +75,8 @@
           hide-details
         />
       </v-col>
+      <v-col class="time-field-delimiter">:</v-col>
+
       <v-col>
         <v-text-field
           variant="underlined"
@@ -141,8 +144,12 @@ export default {
 };
 </script>
 <style scoped>
+.time-field-delimiter {
+  align-self: center;
+  text-align: center;
+}
 .two-digit-field {
-  width: 100px;
+  width: 50px;
 }
 .label-FTI {
   max-width: fit-content;
