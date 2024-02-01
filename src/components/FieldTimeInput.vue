@@ -43,17 +43,11 @@
   </v-container>
 </template>
 <script>
-import {
-  required,
-  isPositiveWholeNumber,
-  isLessThanMaxNumber,
-} from "../rules-fields/rules-common";
 export default {
   props: ["modelValue", "label", "rules"],
   emits: ["update:modelValue"],
   data() {
     return {
-      rulesTimeField: [required, isPositiveWholeNumber, isLessThanMaxNumber],
       hours: 0,
       minutes: 0,
       seconds: 0,
