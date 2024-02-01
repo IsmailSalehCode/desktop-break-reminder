@@ -5,10 +5,11 @@
       <v-col cols="12"> {{ formatElapsedTime() }} </v-col>
     </v-row>
     <v-row v-if="!isTimerElapsed" style="justify-content: center">
-      <v-col class="containerTimerControl"> </v-col>
+      <v-col class="containerTimerControl">
+        <v-btn size="large" @click="replayTimer" icon="mdi-replay"></v-btn>
+      </v-col>
       <v-col class="containerTimerControl">
         <v-btn
-          variant="tonal"
           size="large"
           @click="runOrPauseTimer"
           :icon="icon_playPause"
@@ -16,7 +17,6 @@
       </v-col>
       <v-col class="containerTimerControl">
         <v-btn
-          variant="tonal"
           size="large"
           @click="forceElapseTimer"
           icon="mdi-fast-forward"
@@ -85,6 +85,9 @@ export default {
     };
   },
   methods: {
+    replayTimer() {
+      this.$store.dispatch("replayTimer");
+    },
     forceElapseTimer() {
       this.$store.commit("setSecondsRemaining", 0);
     },

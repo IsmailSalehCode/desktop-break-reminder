@@ -19,6 +19,19 @@ const store = new Vuex.Store({
     settings: {},
   },
   actions: {
+    async replayTimer({ commit }) {
+      const isWorking = this.getters.isWorking;
+
+      await this.dispatch("getSettings");
+
+      let newDuration;
+      if (isWorking) {
+        newDuration = this.getters.settings.workDuration;
+      } else {
+        newDuration = this.getters.settings.restDuration;
+      }
+      commit("setSecondsRemaining", newDuration);
+    },
     async getSpecificSetting(settingName) {
       try {
         return await SettingsController.getSpecificSetting(settingName);
@@ -101,6 +114,9 @@ const store = new Vuex.Store({
     },
   },
   getters: {
+    isWorking(state) {
+      return state.isWorking;
+    },
     settings(state) {
       return state.settings;
     },
