@@ -17,11 +17,7 @@
           v-model="settings.restDuration"
           :rules="rulesTimeDuration"
         ></v-text-field> -->
-        <FieldTimeInput
-          v-model="settings.restDuration"
-          label="Rest duration"
-          :rules="rulesTimeDuration"
-        />
+        <FieldTimeInput v-model="settings.restDuration" label="Rest duration" />
         <v-checkbox
           density="compact"
           v-model="settings.wantsMaxWhenTimerElapsed"

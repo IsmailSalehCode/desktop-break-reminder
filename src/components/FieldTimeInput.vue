@@ -1,10 +1,13 @@
 <template>
   <v-container>
-    <v-row
-      >{{ label }}
+    <v-row>
+      <v-col class="label-FTI"> {{ label }} </v-col>
       <v-text-field
+        type="number"
+        min="0"
+        max="99"
+        @update:model-value="updateTotalSeconds"
         variant="underlined"
-        :placeholder="placeholderTimeField"
         class="two-digit-field"
         v-model="hours"
         label="H"
@@ -12,8 +15,11 @@
         hide-details
       ></v-text-field>
       <v-text-field
+        type="number"
+        min="0"
+        max="59"
+        @update:model-value="updateTotalSeconds"
         variant="underlined"
-        :placeholder="placeholderTimeField"
         class="two-digit-field"
         v-model="minutes"
         label="m"
@@ -21,14 +27,18 @@
         hide-details
       ></v-text-field>
       <v-text-field
+        type="number"
+        min="0"
+        max="59"
+        @update:model-value="updateTotalSeconds"
         variant="underlined"
-        :placeholder="placeholderTimeField"
         class="two-digit-field"
         v-model="seconds"
         label="s"
         :rules="rules"
         hide-details
       ></v-text-field>
+      {{ totalSeconds }}
     </v-row>
   </v-container>
 </template>
@@ -44,24 +54,35 @@ export default {
   data() {
     return {
       rulesTimeField: [required, isPositiveWholeNumber, isLessThanMaxNumber],
-      hours: null,
-      minutes: null,
-      seconds: null,
-      placeholderTimeField: "00",
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
     };
   },
-  watch: {
-    totalSeconds() {
+  methods: {
+    updateTotalSeconds() {
+      // Ensure that hours, minutes, and seconds are non-negative integers
+      this.hours = parseInt(this.hours) || 0;
+      this.minutes = parseInt(this.minutes) || 0;
+      this.seconds = parseInt(this.seconds) || 0;
+
       this.$emit("update:modelValue", this.totalSeconds);
     },
-    modelValue() {
-      const inputSeconds = this.modelValue;
-      const inputHours = Math.floor(inputSeconds / 3600);
-      const inputMinutes = Math.floor((inputSeconds % 3600) / 60);
-      const inputRemainingSeconds = inputSeconds % 60;
-      this.hours = inputHours;
-      this.minutes = inputMinutes;
-      this.seconds = inputRemainingSeconds;
+  },
+  watch: {
+    // totalSeconds() {
+    //   this.$emit("update:modelValue", this.totalSeconds);
+    // },
+    modelValue: {
+      immediate: true,
+      handler(inputSeconds) {
+        const inputHours = Math.floor(inputSeconds / 3600);
+        const inputMinutes = Math.floor((inputSeconds % 3600) / 60);
+        const inputRemainingSeconds = inputSeconds % 60;
+        this.hours = inputHours;
+        this.minutes = inputMinutes;
+        this.seconds = inputRemainingSeconds;
+      },
     },
   },
   computed: {
@@ -70,7 +91,6 @@ export default {
       const minutes = this.minutes;
       const seconds = this.seconds;
       const totalSeconds = hours * 3600 + minutes * 60 + seconds;
-      console.log("total seconds in FieldTimeInput: ", totalSeconds);
       return totalSeconds;
     },
   },
@@ -79,5 +99,10 @@ export default {
 <style scoped>
 .two-digit-field {
   max-width: 50px;
+}
+.label-FTI {
+  max-width: fit-content;
+  margin-top: auto;
+  padding-bottom: 0px;
 }
 </style>
