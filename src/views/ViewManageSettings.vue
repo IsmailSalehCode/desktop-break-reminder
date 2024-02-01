@@ -11,12 +11,17 @@
           v-model="settings.workDuration"
           :rules="rulesTimeDuration"
         ></v-text-field>
-        <v-text-field
+        <!-- <v-text-field
           class="PositiveNumberField"
           label="Rest duration (s)"
           v-model="settings.restDuration"
           :rules="rulesTimeDuration"
-        ></v-text-field>
+        ></v-text-field> -->
+        <FieldTimeInput
+          v-model="settings.restDuration"
+          label="Rest duration"
+          :rules="rulesTimeDuration"
+        />
         <v-checkbox
           density="compact"
           v-model="settings.wantsMaxWhenTimerElapsed"
@@ -43,12 +48,16 @@
 <script>
 import {
   required,
-  isPositiveWholeNumber,
+  isOneOrTwoDigitPositiveWholeNumber,
   isLessThanMaxNumber,
   isValidHexCode,
 } from "../rules-fields/rules-common";
+import FieldTimeInput from "../components/FieldTimeInput.vue";
 
 export default {
+  components: {
+    FieldTimeInput,
+  },
   mounted() {
     this.getSettings();
   },
@@ -70,7 +79,11 @@ export default {
   data() {
     return {
       loadingSettings: true,
-      rulesTimeDuration: [required, isPositiveWholeNumber, isLessThanMaxNumber],
+      rulesTimeDuration: [
+        required,
+        isOneOrTwoDigitPositiveWholeNumber,
+        isLessThanMaxNumber,
+      ],
       rulesHex: [required, isValidHexCode],
       settings: null,
     };
