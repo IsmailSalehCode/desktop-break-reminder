@@ -11,7 +11,6 @@
           variant="tonal"
           size="large"
           @click="runOrPauseTimer"
-          style="font-family: cursive, monospace"
           :icon="icon_playPause"
         ></v-btn>
       </v-col>
