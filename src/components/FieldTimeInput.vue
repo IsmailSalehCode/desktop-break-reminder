@@ -43,57 +43,55 @@
   </v-container>
 </template> -->
 <template>
-  <v-container style="max-width: fit-content">
-    <v-row no-gutters>
-      <v-col class="label-FTI"> {{ label }} </v-col>
-      <v-col>
-        <v-text-field
-          variant="underlined"
-          class="two-digit-field"
-          label="Hours"
-          density="compact"
-          v-model="hours"
-          type="number"
-          min="0"
-          max="99"
-          @input="updateTotalSeconds"
-          hide-details
-        />
-      </v-col>
-      <v-col class="time-field-delimiter">:</v-col>
-      <v-col>
-        <v-text-field
-          variant="underlined"
-          class="two-digit-field"
-          label="Minutes"
-          density="compact"
-          v-model="minutes"
-          type="number"
-          min="0"
-          max="59"
-          @input="updateTotalSeconds"
-          hide-details
-        />
-      </v-col>
-      <v-col class="time-field-delimiter">:</v-col>
+  <v-row no-gutters>
+    <v-col class="label-FTI"> {{ label }} </v-col>
+    <v-col>
+      <v-text-field
+        variant="underlined"
+        class="two-digit-field"
+        label="Hours"
+        density="compact"
+        v-model="hours"
+        type="number"
+        min="0"
+        max="99"
+        @input="updateTotalSeconds"
+        hide-details
+      />
+    </v-col>
+    <v-col class="time-field-delimiter">:</v-col>
+    <v-col>
+      <v-text-field
+        variant="underlined"
+        class="two-digit-field"
+        label="Minutes"
+        density="compact"
+        v-model="minutes"
+        type="number"
+        min="0"
+        max="59"
+        @input="updateTotalSeconds"
+        hide-details
+      />
+    </v-col>
+    <v-col class="time-field-delimiter">:</v-col>
 
-      <v-col>
-        <v-text-field
-          variant="underlined"
-          class="two-digit-field"
-          label="Seconds"
-          density="compact"
-          v-model="seconds"
-          type="number"
-          min="0"
-          max="59"
-          @input="updateTotalSeconds"
-          hide-details
-        />
-      </v-col>
-    </v-row>
-    <p>Total Seconds: {{ totalSeconds }}</p>
-  </v-container>
+    <v-col>
+      <v-text-field
+        variant="underlined"
+        class="two-digit-field"
+        label="Seconds"
+        density="compact"
+        v-model="seconds"
+        type="number"
+        min="0"
+        max="59"
+        @input="updateTotalSeconds"
+        hide-details
+      />
+    </v-col>
+  </v-row>
+  <p>Total Seconds: {{ totalSeconds }}</p>
 </template>
 <script>
 export default {
