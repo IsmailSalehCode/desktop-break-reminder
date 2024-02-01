@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <v-container>
     <v-row>
       <v-col class="label-FTI"> {{ label }} </v-col>
@@ -39,6 +39,44 @@
         hide-details
       ></v-text-field>
       {{ totalSeconds }}
+    </v-row>
+  </v-container>
+</template> -->
+<template>
+  <v-container>
+    <v-row>
+      <v-col class="label-FTI"> {{ label }} </v-col>
+      <v-col>
+        <label>Hours:</label>
+        <input
+          v-model="hours"
+          type="number"
+          min="0"
+          max="99"
+          @input="updateTotalSeconds"
+        />
+      </v-col>
+      <v-col>
+        <label>Minutes:</label>
+        <input
+          v-model="minutes"
+          type="number"
+          min="0"
+          max="59"
+          @input="updateTotalSeconds"
+        />
+      </v-col>
+      <v-col>
+        <label>Seconds:</label>
+        <input
+          v-model="seconds"
+          type="number"
+          min="0"
+          max="59"
+          @input="updateTotalSeconds"
+        />
+      </v-col>
+      <p>Total Seconds: {{ totalSeconds }}</p>
     </v-row>
   </v-container>
 </template>
