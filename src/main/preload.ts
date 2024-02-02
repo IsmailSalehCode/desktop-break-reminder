@@ -10,10 +10,10 @@ contextBridge.exposeInMainWorld("electronAPI", {
   bringMainWindowToFront: () => {
     ipcRenderer.send("bring-main-window-to-front");
   },
-  showAlert: (type, message) => {
+  showAlert: (type: string, message: string) => {
     ipcRenderer.send("show-alert", type, message);
   },
-  showSystemTrayMessage: (obj) => {
+  showSystemTrayMessage: (obj: Object) => {
     ipcRenderer.send("show-system-tray-msg", obj);
   },
 });
