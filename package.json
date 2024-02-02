@@ -2,7 +2,10 @@
   "name": "break-reminder",
   "version": "2.1.0",
   "description": "A productivity app.",
-  "author": "Ismail Saleh",
+  "author": {
+    "name": "Ismail Saleh",
+    "url": "https://github.com/IsmailSalehCode"
+  },
   "repository": "https://github.com/IsmailSalehCode/break-reminder",
   "main": "electron/electron.js",
   "private": true,
