@@ -25,8 +25,8 @@ function createWindow() {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
       contextIsolation: true,
-      icon: iconPath,
     },
+    icon: iconPath,
   });
 
   mainWindow.removeMenu();
