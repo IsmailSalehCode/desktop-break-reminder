@@ -1,4 +1,3 @@
-// electron/electron.js
 const path = require("path");
 const {
   app,
