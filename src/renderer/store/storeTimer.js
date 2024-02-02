@@ -20,7 +20,6 @@ const store = new Vuex.Store({
   },
   actions: {
     pauseIfTimerRunning({ commit }) {
-      console.log("got called");
       const isPaused = this.getters.isPaused;
       if (isPaused == false) {
         commit("runOrPauseTimer");
