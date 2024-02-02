@@ -46,6 +46,12 @@ export default {
     },
     async onTimerElapsed() {
       this.bringToFront();
+      const wantsTrayMsgWhenTimerElapsed = await this.getSetting(
+        "wantsTrayMsgWhenTimerElapsed"
+      );
+      if (wantsTrayMsgWhenTimerElapsed) {
+        this.showSystemTrayMessage("info", "Yo!", "Time's up!");
+      }
       const wantsMax = await this.getSetting("wantsMaxWhenTimerElapsed");
       if (wantsMax) {
         this.maximize();
@@ -65,6 +71,13 @@ export default {
     },
     minimize() {
       window.electronAPI.minimizeMainWindow();
+    },
+    showSystemTrayMessage(pIconType, pTitle, pContent) {
+      window.electronAPI.showSystemTrayMessage({
+        iconType: pIconType,
+        title: pTitle,
+        content: pContent,
+      });
     },
   },
 };

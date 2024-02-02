@@ -18,6 +18,7 @@ let mainWindow;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
+    title: "Break reminder",
     width: 480,
     height: 480,
     webPreferences: {
@@ -75,7 +76,7 @@ function createTray() {
     },
   ]);
 
-  tray.setToolTip("Break Reminder");
+  tray.setToolTip(mainWindow.title);
   tray.setContextMenu(contextMenu);
 
   tray.on("click", () => {
@@ -117,6 +118,10 @@ app.whenReady().then(() => {
       message: message,
       buttons: ["Ok"],
     });
+  });
+
+  ipcMain.on("show-system-tray-msg", (event, obj) => {
+    tray.displayBalloon(obj);
   });
 
   app.on("activate", function () {

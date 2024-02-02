@@ -9,6 +9,11 @@
         <FieldTimeInput v-model="settings.restDuration" label="Rest duration" />
         <v-checkbox
           density="compact"
+          v-model="settings.wantsTrayMsgWhenTimerElapsed"
+          label="Display message in taskbar upon timer elapse."
+        ></v-checkbox>
+        <v-checkbox
+          density="compact"
           v-model="settings.wantsMaxWhenTimerElapsed"
           label="Maximize upon timer elapse."
         ></v-checkbox>

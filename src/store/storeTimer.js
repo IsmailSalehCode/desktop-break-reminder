@@ -109,6 +109,9 @@ const store = new Vuex.Store({
     },
   },
   getters: {
+    wantsTrayMsgWhenTimerElapsed(state) {
+      return state.wantsTrayMsgWhenTimerElapsed;
+    },
     isWorking(state) {
       return state.isWorking;
     },
