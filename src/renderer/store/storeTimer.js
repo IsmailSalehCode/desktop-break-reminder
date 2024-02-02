@@ -19,6 +19,13 @@ const store = new Vuex.Store({
     settings: {},
   },
   actions: {
+    pauseIfTimerRunning({ commit }) {
+      console.log("got called");
+      const isPaused = this.getters.isPaused;
+      if (isPaused == false) {
+        commit("runOrPauseTimer");
+      }
+    },
     async replayTimer({ commit }) {
       const isWorking = this.getters.isWorking;
 
@@ -124,8 +131,8 @@ const store = new Vuex.Store({
     isTimerElapsed(state) {
       return state.secondsRemaining === 0;
     },
-    icon_playPause(state) {
-      return state.isPaused ? "mdi-play" : "mdi-pause";
+    isPaused(state) {
+      return state.isPaused;
     },
     strCurrTimerMode(state, getters) {
       if (getters.isTimerElapsed) {

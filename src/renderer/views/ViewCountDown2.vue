@@ -41,6 +41,9 @@
 </template>
 <script>
 export default {
+  beforeRouteLeave() {
+    this.pauseIfTimerRunning();
+  },
   emits: ["timer-elapsed", "timer-paused", "timer-running"],
   watch: {
     isTimerElapsed(v) {
@@ -61,7 +64,8 @@ export default {
       return this.$store.getters.isTimerElapsed;
     },
     icon_playPause() {
-      return this.$store.getters.icon_playPause;
+      const isPaused = this.$store.getters.isPaused;
+      return isPaused ? "mdi-play" : "mdi-pause";
     },
     strCurrTimerMode() {
       return this.$store.getters.strCurrTimerMode;
@@ -87,6 +91,9 @@ export default {
     };
   },
   methods: {
+    pauseIfTimerRunning() {
+      this.$store.dispatch("pauseIfTimerRunning");
+    },
     replayTimer() {
       this.$store.dispatch("replayTimer");
     },
