@@ -7,6 +7,7 @@ const {
   dialog,
   Menu,
   Tray,
+  session,
 } = require("electron");
 const isDev = process.env.IS_DEV == "true" ? true : false;
 
@@ -88,6 +89,16 @@ function createTray() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow();
+
+  session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+    callback({
+      responseHeaders: {
+        ...details.responseHeaders,
+        "Content-Security-Policy": ["script-src 'self'"],
+      },
+    });
+  });
+
   createTray();
 
   ipcMain.on("bring-main-window-to-front", () => {
