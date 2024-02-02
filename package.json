@@ -40,9 +40,9 @@
     "wait-on": "^7.0.1"
   },
   "build": {
-    "appId": "com.ismailsalehcode.mrz-admin-vault",
-    "productName": "MRZ Admin Vault",
-    "copyright": "Copyright © 2023 Ismail Saleh",
+    "appId": "com.ismailsalehcode.break-reminder",
+    "productName": "Break reminder",
+    "copyright": "© 2024 Ismail Saleh",
     "mac": {
       "category": "public.app-category.utilities"
     },
