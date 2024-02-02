@@ -9,10 +9,9 @@ import {
   Tray,
   session,
 } from "electron";
-const isDev = process.env.IS_DEV == "true" ? true : false;
 
 let tray: Tray;
-const iconPath = join(__dirname, "../../assets/icon.ico");
+const iconPath = join(app.getAppPath(), "static", "icon.ico");
 let mainWindow;
 
 function createWindow() {
@@ -46,6 +45,8 @@ function createWindow() {
   } else {
     mainWindow.loadFile(join(app.getAppPath(), "renderer", "index.html"));
   }
+
+  const isDev = process.env.IS_DEV == "true" ? true : false;
   // Open the DevTools. TODO: remove dev tools from prod
   // if (isDev) {
   mainWindow.webContents.openDevTools();
