@@ -1,5 +1,5 @@
-const { path, join } = require("path");
-const {
+import { join } from "path";
+import {
   app,
   BrowserWindow,
   shell,
@@ -8,11 +8,11 @@ const {
   Menu,
   Tray,
   session,
-} = require("electron");
+} from "electron";
 const isDev = process.env.IS_DEV == "true" ? true : false;
 
 let tray;
-const iconPath = path.join(__dirname, "../../assets/icon.ico");
+const iconPath = join(__dirname, "../../assets/icon.ico");
 let mainWindow;
 
 function createWindow() {
@@ -23,7 +23,7 @@ function createWindow() {
     height: 480,
     webPreferences: {
       backgroundThrottling: false,
-      preload: path.join(__dirname, "preload.js"),
+      preload: join(__dirname, "preload.js"),
       nodeIntegration: false,
       contextIsolation: true,
     },
