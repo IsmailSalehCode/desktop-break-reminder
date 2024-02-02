@@ -18,13 +18,13 @@ let mainWindow;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    title: "Break reminder",
+    title: "Break Reminder",
     width: 480,
     height: 480,
     webPreferences: {
       backgroundThrottling: false,
       preload: path.join(__dirname, "preload.js"),
-      nodeIntegration: true,
+      nodeIntegration: false,
       contextIsolation: true,
     },
     icon: iconPath,
@@ -101,44 +101,44 @@ app.whenReady().then(() => {
 
   createTray();
 
-  ipcMain.on("bring-main-window-to-front", () => {
-    if (mainWindow) {
-      mainWindow.show();
-    }
-  });
-
-  ipcMain.on("minimize-main-window", () => {
-    if (mainWindow) {
-      mainWindow.minimize();
-    }
-  });
-
-  ipcMain.on("maximize-main-window", () => {
-    if (mainWindow) {
-      mainWindow.maximize();
-    }
-  });
-
-  ipcMain.on("show-alert", (event, type, message) => {
-    /**
-     * Can be none, info, error, question or warning. On Windows, question displays the same icon as info, unless you set an icon using the icon option. On macOS, both warning and error display the same warning icon.
-     */
-    dialog.showMessageBoxSync({
-      type: type,
-      message: message,
-      buttons: ["Ok"],
-    });
-  });
-
-  ipcMain.on("show-system-tray-msg", (event, obj) => {
-    tray.displayBalloon(obj);
-  });
-
   app.on("activate", function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
+});
+
+ipcMain.on("bring-main-window-to-front", () => {
+  if (mainWindow) {
+    mainWindow.show();
+  }
+});
+
+ipcMain.on("minimize-main-window", () => {
+  if (mainWindow) {
+    mainWindow.minimize();
+  }
+});
+
+ipcMain.on("maximize-main-window", () => {
+  if (mainWindow) {
+    mainWindow.maximize();
+  }
+});
+
+ipcMain.on("show-alert", (event, type, message) => {
+  /**
+   * Can be none, info, error, question or warning. On Windows, question displays the same icon as info, unless you set an icon using the icon option. On macOS, both warning and error display the same warning icon.
+   */
+  dialog.showMessageBoxSync({
+    type: type,
+    message: message,
+    buttons: ["Ok"],
+  });
+});
+
+ipcMain.on("show-system-tray-msg", (event, obj) => {
+  tray.displayBalloon(obj);
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common for applications and their menu bar to stay active until the user quits explicitly with Cmd + Q.
