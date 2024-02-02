@@ -11,7 +11,7 @@ import {
 } from "electron";
 const isDev = process.env.IS_DEV == "true" ? true : false;
 
-let tray;
+let tray: Tray;
 const iconPath = join(__dirname, "../../assets/icon.ico");
 let mainWindow;
 
