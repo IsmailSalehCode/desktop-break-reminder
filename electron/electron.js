@@ -47,10 +47,10 @@ function createWindow() {
       ? "http://localhost:3000"
       : `file://${path.join(__dirname, "../dist/index.html")}`
   );
-  // Open the DevTools.
-  if (isDev) {
-    mainWindow.webContents.openDevTools();
-  }
+  // Open the DevTools. TODO: remove dev tools from prod
+  // if (isDev) {
+  mainWindow.webContents.openDevTools();
+  // }
 
   ipcMain.handle("show-save-dialog", async (event, options) => {
     const result = await dialog.showSaveDialog(mainWindow, options);
@@ -132,11 +132,11 @@ app.whenReady().then(() => {
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common for applications and their menu bar to stay active until the user quits explicitly with Cmd + Q.
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
-});
+// app.on("window-all-closed", () => {
+//   if (process.platform !== "darwin") {
+//     app.quit();
+//   }
+// });
 // TODO: remove locales folder from final build
 /**
  * When using electron-builder, you can default to the locale en-US via
