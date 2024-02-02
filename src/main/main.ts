@@ -1,4 +1,4 @@
-const path = require("path");
+const { path, join } = require("path");
 const {
   app,
   BrowserWindow,
@@ -12,7 +12,7 @@ const {
 const isDev = process.env.IS_DEV == "true" ? true : false;
 
 let tray;
-const iconPath = path.join(__dirname, "../assets/icon.ico");
+const iconPath = path.join(__dirname, "../../assets/icon.ico");
 let mainWindow;
 
 function createWindow() {
@@ -40,22 +40,16 @@ function createWindow() {
     return { action: "deny" }; // Prevent the app from opening the URL.
   });
 
-  // and load the index.html of the app.
-  // win.loadFile("index.html");
-  mainWindow.loadURL(
-    isDev
-      ? "http://localhost:3000"
-      : `file://${path.join(__dirname, "../dist/index.html")}`
-  );
+  if (process.env.NODE_ENV === "development") {
+    const rendererPort = process.argv[2];
+    mainWindow.loadURL(`http://localhost:${rendererPort}`);
+  } else {
+    mainWindow.loadFile(join(app.getAppPath(), "renderer", "index.html"));
+  }
   // Open the DevTools. TODO: remove dev tools from prod
   // if (isDev) {
   mainWindow.webContents.openDevTools();
   // }
-
-  ipcMain.handle("show-save-dialog", async (event, options) => {
-    const result = await dialog.showSaveDialog(mainWindow, options);
-    return result;
-  });
 }
 
 function createTray() {

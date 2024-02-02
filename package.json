@@ -20,18 +20,17 @@
     "@mdi/font": "7.0.96",
     "core-js": "^3.29.0",
     "dexie": "^3.2.4",
-    "vue": "^3.2.0",
+    "vue": "^3.3.8",
     "vue-router": "^4.0.0",
     "vuetify": "^3.0.0",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.6.2",
-    "chalk": "^5.3.0",
+    "chalk": "^4.1.2",
     "chokidar": "^3.5.3",
-    "cross-env": "^7.0.3",
-    "electron": "^25.1.0",
-    "electron-builder": "^23.6.0",
+    "electron": "^27.1.0",
+    "electron-builder": "^24.2.1",
     "eslint": "^8.37.0",
     "eslint-plugin-vue": "^9.3.0",
     "sass": "^1.60.0",
@@ -39,25 +38,5 @@
     "vite": "^4.5.2",
     "vite-plugin-vuetify": "^1.0.0",
     "wait-on": "^7.0.1"
-  },
-  "build": {
-    "appId": "com.ismailsalehcode.break-reminder",
-    "productName": "Break reminder",
-    "copyright": "© 2024 Ismail Saleh",
-    "mac": {
-      "category": "public.app-category.utilities"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true
-    },
-    "files": [
-      "dist/**/*",
-      "electron/**/*"
-    ],
-    "directories": {
-      "buildResources": "assets",
-      "output": "dist_electron"
-    }
   }
 }
