@@ -1,6 +1,6 @@
 {
   "appId": "com.ismailsalehcode.break-reminder",
-  "electronLanguages": ["en_US"],
+  "electronLanguages": ["en-US"],
   "directories": {
     "output": "dist"
   },

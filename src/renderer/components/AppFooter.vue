@@ -14,6 +14,7 @@
         >
           &#169; {{ yearCreated }} -
           <a :href="linkMe" target="_blank">Исмаил Салех</a>
+          <!-- what to do with the bg text here TODO: should i add bg.pak to locales? electron-builder.json-->
         </v-col>
       </v-row>
     </v-col>
