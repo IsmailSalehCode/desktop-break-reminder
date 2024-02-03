@@ -47,7 +47,29 @@
           hide-details
         />
       </v-col>
+      <v-col>
+        <v-btn
+          variant="plain"
+          density="comfortable"
+          size="small"
+          @click="resetModelValue"
+          icon
+          >x</v-btn
+        >
+      </v-col>
     </v-row>
+    <!-- <v-row>
+      <v-col class="pt-0 ma-0" style="text-align: end">
+        <v-btn
+          size="small"
+          density="comfortable"
+          style="text-align: center"
+          variant="outlined"
+          @click="resetInputs"
+          >Clear {{ label }}</v-btn
+        >
+      </v-col>
+    </v-row> -->
     <!-- <p>Total Seconds: {{ totalSeconds }}</p> -->
   </v-container>
 </template>
@@ -64,6 +86,9 @@ export default {
     };
   },
   methods: {
+    resetModelValue() {
+      this.$emit("update:modelValue", 0);
+    },
     updateTotalSeconds() {
       this.hours = parseInt(this.hours) || 0;
       this.minutes = parseInt(this.minutes) || 0;
