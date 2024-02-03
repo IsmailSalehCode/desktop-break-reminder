@@ -60,11 +60,11 @@ export default {
       hours: 0,
       minutes: 0,
       seconds: 0,
+      capInputSeconds: 86400, //24 hrs
     };
   },
   methods: {
     updateTotalSeconds() {
-      // Ensure that hours, minutes, and seconds are non-negative integers
       this.hours = parseInt(this.hours) || 0;
       this.minutes = parseInt(this.minutes) || 0;
       this.seconds = parseInt(this.seconds) || 0;
@@ -73,12 +73,13 @@ export default {
     },
   },
   watch: {
-    // totalSeconds() {
-    //   this.$emit("update:modelValue", this.totalSeconds);
-    // },
     modelValue: {
       immediate: true,
       handler(inputSeconds) {
+        if (inputSeconds > this.capInputSeconds) {
+          this.$emit("update:modelValue", this.capInputSeconds);
+          inputSeconds = this.capInputSeconds;
+        }
         const inputHours = Math.floor(inputSeconds / 3600);
         const inputMinutes = Math.floor((inputSeconds % 3600) / 60);
         const inputRemainingSeconds = inputSeconds % 60;
