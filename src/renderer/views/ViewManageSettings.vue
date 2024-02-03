@@ -60,7 +60,7 @@ export default {
     async updateSettings() {
       const { valid } = await this.$refs.form.validate();
       if (valid) {
-        this.loadingSettings = true; //todo better loading indication
+        this.loadingSettings = true;
         await this.$store.dispatch("updateSettings", this.settings);
         this.loadingSettings = false;
       }
