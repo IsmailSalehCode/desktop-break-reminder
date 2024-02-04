@@ -11,12 +11,14 @@
         >
           {{ item.title }}
         </v-btn>
+        <v-btn @click="toggleTheme" icon="mdi-theme-light-dark"></v-btn>
       </v-toolbar-items>
     </v-app-bar>
   </div>
 </template>
 <script>
 export default {
+  emits: ["toggle-theme"],
   data() {
     return {
       menuItems: [
@@ -24,6 +26,11 @@ export default {
         { title: "Settings", path: "/settings" },
       ],
     };
+  },
+  methods: {
+    toggleTheme() {
+      this.$emit("toggle-theme");
+    },
   },
 };
 </script>

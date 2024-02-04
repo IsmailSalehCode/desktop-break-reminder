@@ -1,6 +1,6 @@
 <template>
-  <v-app ref="appContainer">
-    <AppBar />
+  <v-app>
+    <AppBar @toggle-theme="toggleTheme" />
     <v-main>
       <router-view
         @timer-elapsed="onTimerElapsed"
@@ -15,7 +15,7 @@
 <script>
 import AppBar from "./components/AppBar.vue";
 import AppFooter from "./components/AppFooter.vue";
-import { SettingsController } from "./persistent-data/dbController";
+import { useTheme } from "vuetify";
 
 export default {
   components: { AppBar, AppFooter },
@@ -26,6 +26,11 @@ export default {
   async mounted() {
     await this.$store.dispatch("initWorkSeconds");
   },
+  setup() {
+    const theme = useTheme();
+
+    return { theme };
+  },
   data() {
     return {
       appHexBG: "default",
@@ -33,35 +38,44 @@ export default {
   },
   methods: {
     async onTimerRunning() {
-      const wantsMin = await this.getSetting("wantsMinWhenTimerStart");
+      const wantsMin = await this.$store.dispatch(
+        "getSpecificSetting",
+        "wantsMinWhenTimerStart"
+      );
       if (wantsMin) {
         this.minimize();
       }
-      const bgHex = await this.getSetting("bgHexTimerRunning");
-      this.changeHexBGColor(bgHex);
     },
     async onTimerPaused() {
-      const bgHex = await this.getSetting("bgHexTimerPaused");
-      this.changeHexBGColor(bgHex);
+      const wantsThemeToggleWhenTimerPaused = await this.$store.dispatch(
+        "getSpecificSetting",
+        "wantsThemeToggleWhenTimerPaused"
+      );
+      if (wantsThemeToggleWhenTimerPaused) {
+        this.toggleTheme();
+      }
     },
     async onTimerElapsed() {
       this.bringToFront();
-      const wantsTrayMsgWhenTimerElapsed = await this.getSetting(
+      const wantsTrayMsgWhenTimerElapsed = await this.$store.dispatch(
+        "getSpecificSetting",
         "wantsTrayMsgWhenTimerElapsed"
       );
       if (wantsTrayMsgWhenTimerElapsed) {
         this.showSystemTrayMessage("info", "Yo!", "Time's up!");
       }
-      const wantsMax = await this.getSetting("wantsMaxWhenTimerElapsed");
+      const wantsMax = await this.$store.dispatch(
+        "getSpecificSetting",
+        "wantsMaxWhenTimerElapsed"
+      );
       if (wantsMax) {
         this.maximize();
       }
     },
-    changeHexBGColor(newHexCode) {
-      this.$refs.appContainer.$el.style.backgroundColor = newHexCode;
-    },
-    async getSetting(setting) {
-      return await SettingsController.getSpecificSetting(setting);
+    toggleTheme() {
+      this.theme.global.name.value = this.theme.global.current.value.dark
+        ? "light"
+        : "dark";
     },
     bringToFront() {
       window.electronAPI.bringMainWindowToFront();

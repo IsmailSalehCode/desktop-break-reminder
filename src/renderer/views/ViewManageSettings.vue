@@ -11,23 +11,26 @@
           density="compact"
           v-model="settings.wantsTrayMsgWhenTimerElapsed"
           label="Display message in taskbar upon timer elapse."
+          hide-details
         ></v-checkbox>
         <v-checkbox
           density="compact"
           v-model="settings.wantsMaxWhenTimerElapsed"
           label="Maximize upon timer elapse."
+          hide-details
         ></v-checkbox>
         <v-checkbox
           density="compact"
           v-model="settings.wantsMinWhenTimerStart"
           label="Minimize when timer starts."
+          hide-details
         ></v-checkbox>
-        <v-text-field
-          style="max-width: 200px"
-          v-model="settings.bgHexTimerPaused"
-          label="BG color when timer paused."
-          :rules="rulesHex"
-        ></v-text-field>
+        <v-checkbox
+          density="compact"
+          v-model="settings.wantsThemeToggleWhenTimerPaused"
+          label="Toggle app theme when timer is inactive."
+          hide-details
+        ></v-checkbox>
         <v-btn variant="tonal" type="submit">Save & Apply</v-btn>
       </v-form>
     </div>
@@ -36,12 +39,6 @@
   <!-- todo: add bgHexTimerRunning field -->
 </template>
 <script>
-import {
-  required,
-  isOneOrTwoDigitPositiveWholeNumber,
-  isLessThanMaxNumber,
-  isValidHexCode,
-} from "../rules-fields/rules-common";
 import FieldTimeInput from "../components/FieldTimeInput.vue";
 
 export default {
@@ -69,12 +66,6 @@ export default {
   data() {
     return {
       loadingSettings: true,
-      rulesTimeDuration: [
-        required,
-        isOneOrTwoDigitPositiveWholeNumber,
-        isLessThanMaxNumber,
-      ],
-      rulesHex: [required, isValidHexCode],
       settings: null,
     };
   },
