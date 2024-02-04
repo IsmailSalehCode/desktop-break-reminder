@@ -12,11 +12,11 @@
   },
   "win": {
     "target": "nsis",
-    "icon": "./src/main/static/icon.ico"
+    "icon": "./src/main/static/w-timer.ico"
   },
   "linux": {
     "target": ["snap"],
-    "icon": "./src/main/static/icon.ico"
+    "icon": "./src/main/static/w-timer.ico"
   },
   "files": [
     "build/main/**/*",

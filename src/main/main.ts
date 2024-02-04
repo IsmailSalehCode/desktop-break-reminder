@@ -11,7 +11,7 @@ import {
 } from "electron";
 
 let tray: Tray;
-const iconPath = join(app.getAppPath(), "static", "icon.ico");
+const iconPath = join(app.getAppPath(), "static", "w-timer.ico");
 let mainWindow;
 
 function createWindow() {

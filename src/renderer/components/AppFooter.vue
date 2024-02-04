@@ -7,8 +7,8 @@
           style="
             text-align: center;
             text-wrap: balance;
-            font-weight: bold;
             letter-spacing: 2px;
+            font-size: smaller;
           "
         >
           &#169; {{ yearCreated }} -
