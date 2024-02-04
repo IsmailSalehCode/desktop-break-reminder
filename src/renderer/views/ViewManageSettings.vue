@@ -25,23 +25,28 @@
           label="Minimize when timer starts."
           hide-details
         ></v-checkbox>
-        <v-checkbox
-          density="comfortable"
-          v-model="settings.wantsThemeToggleWhenTimerPaused"
-          label="Toggle app theme when timer is inactive."
-          hide-details
-        ></v-checkbox>
+        <v-text-field
+          class="color-field"
+          v-model="settings.bgHexTimerRunning"
+          label="BG color during timer run."
+          :rules="rulesColor"
+        ></v-text-field>
+        <v-text-field
+          class="color-field"
+          v-model="settings.bgHexTimerPaused"
+          label="BG color when timer paused."
+          :rules="rulesColor"
+        ></v-text-field>
         <br />
         <v-btn variant="tonal" type="submit">Save & Apply</v-btn>
       </v-form>
     </div>
   </v-container>
-  <!-- todo: hex color picker field -->
-  <!-- todo: add bgHexTimerRunning field -->
+  <!-- todo: make it possible to enter "unset" as a value for the bgHex fields. unset resets the colors. -->
 </template>
 <script>
 import FieldTimeInput from "../components/FieldTimeInput.vue";
-
+import { isValidColorValue } from "../rules-input/all";
 export default {
   components: {
     FieldTimeInput,
@@ -68,11 +73,15 @@ export default {
     return {
       loadingSettings: true,
       settings: null,
+      rulesColor: [isValidColorValue],
     };
   },
 };
 </script>
 <style>
+.color-field {
+  max-width: 200px;
+}
 .PositiveNumberField {
   max-width: 170px;
 }

@@ -1,9 +1,9 @@
 import Dexie from "dexie";
 
 export const db = new Dexie("mainDB");
-db.version(6).stores({
+db.version(7).stores({
   settings:
-    "++id,workDuration, restDuration, wantsMaxWhenTimerElapsed, wantsMinWhenTimerStart, wantsThemeToggleWhenTimerPaused, wantsTrayMsgWhenTimerElapsed",
+    "++id,workDuration, restDuration, wantsMaxWhenTimerElapsed, wantsMinWhenTimerStart, wantsTrayMsgWhenTimerElapsed, bgHexTimerRunning,bgHexTimerPaused",
 });
 
 async function isSettingsTableEmpty() {
@@ -18,7 +18,8 @@ async function createDefaultRow() {
     wantsMaxWhenTimerElapsed: false,
     wantsMinWhenTimerStart: false,
     wantsTrayMsgWhenTimerElapsed: true,
-    wantsThemeToggleWhenTimerPaused: false,
+    bgHexTimerRunning: "unset",
+    bgHexTimerPaused: "unset",
   });
 }
 

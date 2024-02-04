@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app ref="appContainer">
     <AppBar @toggle-theme="toggleTheme" />
     <v-main>
       <router-view
@@ -37,40 +37,46 @@ export default {
     };
   },
   methods: {
+    async setPausedBGColor(isPaused) {
+      let newBGColor;
+      if (isPaused) {
+        newBGColor = await this.getSpecificSetting("bgHexTimerPaused");
+      } else {
+        newBGColor = await this.getSpecificSetting("bgHexTimerRunning");
+      }
+      this.changeHexBGColor(newBGColor);
+    },
+
+    async getSpecificSetting(settingName) {
+      return await this.$store.dispatch("getSpecificSetting", settingName);
+    },
     async onTimerRunning() {
-      const wantsMin = await this.$store.dispatch(
-        "getSpecificSetting",
-        "wantsMinWhenTimerStart"
-      );
+      const wantsMin = await this.getSpecificSetting("wantsMinWhenTimerStart");
       if (wantsMin) {
         this.minimize();
       }
+      this.setPausedBGColor(false);
     },
     async onTimerPaused() {
-      const wantsThemeToggleWhenTimerPaused = await this.$store.dispatch(
-        "getSpecificSetting",
-        "wantsThemeToggleWhenTimerPaused"
-      );
-      if (wantsThemeToggleWhenTimerPaused) {
-        this.toggleTheme();
-      }
+      this.setPausedBGColor(true);
     },
     async onTimerElapsed() {
       this.bringToFront();
-      const wantsTrayMsgWhenTimerElapsed = await this.$store.dispatch(
-        "getSpecificSetting",
+      const wantsTrayMsgWhenTimerElapsed = await this.getSpecificSetting(
         "wantsTrayMsgWhenTimerElapsed"
       );
       if (wantsTrayMsgWhenTimerElapsed) {
         this.showSystemTrayMessage("info", "Yo!", "Time's up!");
       }
-      const wantsMax = await this.$store.dispatch(
-        "getSpecificSetting",
+      const wantsMax = await this.getSpecificSetting(
         "wantsMaxWhenTimerElapsed"
       );
       if (wantsMax) {
         this.maximize();
       }
+    },
+    changeHexBGColor(newHexCode) {
+      this.$refs.appContainer.$el.style.backgroundColor = newHexCode;
     },
     toggleTheme() {
       this.theme.global.name.value = this.theme.global.current.value.dark
