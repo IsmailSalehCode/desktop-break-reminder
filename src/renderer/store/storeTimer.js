@@ -38,7 +38,7 @@ const store = new Vuex.Store({
       }
       commit("setSecondsRemaining", newDuration);
     },
-    async getSpecificSetting(settingName) {
+    async getSpecificSetting(context, settingName) {
       try {
         return await SettingsController.getSpecificSetting(settingName);
       } catch (err) {

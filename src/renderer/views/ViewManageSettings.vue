@@ -8,29 +8,30 @@
         <FieldTimeInput v-model="settings.workDuration" label="Work duration" />
         <FieldTimeInput v-model="settings.restDuration" label="Rest duration" />
         <v-checkbox
-          density="compact"
+          density="comfortable"
           v-model="settings.wantsTrayMsgWhenTimerElapsed"
           label="Display message in taskbar upon timer elapse."
           hide-details
         ></v-checkbox>
         <v-checkbox
-          density="compact"
+          density="comfortable"
           v-model="settings.wantsMaxWhenTimerElapsed"
           label="Maximize upon timer elapse."
           hide-details
         ></v-checkbox>
         <v-checkbox
-          density="compact"
+          density="comfortable"
           v-model="settings.wantsMinWhenTimerStart"
           label="Minimize when timer starts."
           hide-details
         ></v-checkbox>
         <v-checkbox
-          density="compact"
+          density="comfortable"
           v-model="settings.wantsThemeToggleWhenTimerPaused"
           label="Toggle app theme when timer is inactive."
           hide-details
         ></v-checkbox>
+        <br />
         <v-btn variant="tonal" type="submit">Save & Apply</v-btn>
       </v-form>
     </div>
