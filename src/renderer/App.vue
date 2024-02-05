@@ -1,6 +1,6 @@
 <template>
   <v-app ref="appContainer">
-    <AppBar @toggle-theme="toggleTheme" />
+    <AppBar />
     <v-main>
       <router-view
         @timer-elapsed="onTimerElapsed"
@@ -15,7 +15,6 @@
 <script>
 import AppBar from "./components/AppBar.vue";
 import AppFooter from "./components/AppFooter.vue";
-import { useTheme } from "vuetify";
 
 export default {
   components: { AppBar, AppFooter },
@@ -25,11 +24,6 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch("initWorkSeconds");
-  },
-  setup() {
-    const theme = useTheme();
-
-    return { theme };
   },
   data() {
     return {
@@ -77,11 +71,6 @@ export default {
     },
     changeHexBGColor(newHexCode) {
       this.$refs.appContainer.$el.style.backgroundColor = newHexCode;
-    },
-    toggleTheme() {
-      this.theme.global.name.value = this.theme.global.current.value.dark
-        ? "light"
-        : "dark";
     },
     bringToFront() {
       window.electronAPI.bringMainWindowToFront();

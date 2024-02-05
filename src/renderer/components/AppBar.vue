@@ -17,8 +17,14 @@
   </div>
 </template>
 <script>
+import { useTheme } from "vuetify";
+
 export default {
-  emits: ["toggle-theme"],
+  setup() {
+    const theme = useTheme();
+
+    return { theme };
+  },
   data() {
     return {
       menuItems: [
@@ -29,7 +35,9 @@ export default {
   },
   methods: {
     toggleTheme() {
-      this.$emit("toggle-theme");
+      this.theme.global.name.value = this.theme.global.current.value.dark
+        ? "light"
+        : "dark";
     },
   },
 };
