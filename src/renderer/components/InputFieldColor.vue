@@ -5,7 +5,13 @@
       <v-col>
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-text-field v-bind="props" hide-details v-model="pickedColor" />
+            <!-- <v-text-field
+              :rules="rules"
+              v-bind="props"
+              hide-details
+              v-model="pickedColor"
+            /> -->
+            <div class="rounded-rect" ref="shapeModel"></div>
           </template>
           <v-color-picker
             mode="hex"
@@ -45,6 +51,7 @@ export default {
       },
     },
     pickedColor() {
+      this.$refs.shapeModel.$el.style.backgroundColor = this.pickedColor; //TODO:
       this.$emit("update:modelValue", this.pickedColor);
     },
   },
@@ -57,6 +64,13 @@ export default {
 };
 </script>
 <style scoped>
+.rounded-rect {
+  width: 50px;
+  height: 30px;
+  border-radius: 5px; /* Adjust the border-radius to control the roundness of the corners */
+  padding: 20px;
+  text-align: center;
+}
 .container-IFC {
   max-width: fit-content;
   margin: 0px;
