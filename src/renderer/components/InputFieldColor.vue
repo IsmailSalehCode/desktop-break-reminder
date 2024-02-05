@@ -5,12 +5,6 @@
       <v-col>
         <v-menu>
           <template v-slot:activator="{ props }">
-            <!-- <v-text-field
-              :rules="rules"
-              v-bind="props"
-              hide-details
-              v-model="pickedColor"
-            /> -->
             <div v-bind="props" class="rounded-sq" ref="shapeModel"></div>
           </template>
           <v-color-picker
@@ -36,7 +30,7 @@
 </template>
 <script>
 export default {
-  props: ["modelValue", "label", "rules"],
+  props: ["modelValue", "label"],
   emits: ["update:modelValue"],
   data() {
     return {
