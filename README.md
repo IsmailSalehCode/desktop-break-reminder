@@ -9,6 +9,6 @@ Timer app with two modes: Work and Rest. User can:
    - The timer is running.
    - The timer is paused.
 
-**What am I working on?** Requirements 1. and 5. can conflict with each other.
+**What am I working on?** Implementations of requirements 1. and 5. can conflict with each other.
 
 After I resolve this issue this repo will be set to private and an installer will be provided in a public repo. The `README.MD` of the public repo will have a manual with screenshots of the app.
