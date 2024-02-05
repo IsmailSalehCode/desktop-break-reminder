@@ -11,7 +11,7 @@
               hide-details
               v-model="pickedColor"
             /> -->
-            <div class="rounded-rect" ref="shapeModel"></div>
+            <div v-bind="props" class="rounded-sq" ref="shapeModel"></div>
           </template>
           <v-color-picker
             mode="hex"
@@ -47,15 +47,25 @@ export default {
     modelValue: {
       immediate: true,
       handler(inputColor) {
+        this.setUIShapeColor();
+        // this.$refs.shapeModel.style.backgroundColor = this.pickedColor;
         this.pickedColor = inputColor;
       },
     },
     pickedColor() {
-      this.$refs.shapeModel.$el.style.backgroundColor = this.pickedColor; //TODO:
       this.$emit("update:modelValue", this.pickedColor);
     },
   },
   methods: {
+    setUIShapeColor() {
+      this.$nextTick(() => {
+        const shape = this.$refs.shapeModel;
+
+        if (shape) {
+          shape.style.backgroundColor = this.pickedColor;
+        }
+      });
+    },
     resetModelValue() {
       const defaultColor = this.$vuetify.theme.current.colors.background;
       this.pickedColor = defaultColor;
@@ -64,12 +74,12 @@ export default {
 };
 </script>
 <style scoped>
-.rounded-rect {
-  width: 50px;
+.rounded-sq {
+  cursor: pointer;
   height: 30px;
-  border-radius: 5px; /* Adjust the border-radius to control the roundness of the corners */
-  padding: 20px;
-  text-align: center;
+  width: 30px;
+  border-radius: 5px;
+  border: 2px solid white;
 }
 .container-IFC {
   max-width: fit-content;
