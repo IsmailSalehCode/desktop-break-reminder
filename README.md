@@ -11,4 +11,4 @@ Timer app with two modes: Work and Rest. User can:
 
 **What am I working on?** Implementations of requirements 1. and 5. can conflict with each other.
 
-After I resolve this issue this repo will be set to private and an installer will be provided in a public repo. The `README.MD` of the public repo will have a manual with screenshots of the app.
+After I resolve this issue, an installer will be provided in a public repo. The `README.MD` of the public repo will have a manual with screenshots of the app.
