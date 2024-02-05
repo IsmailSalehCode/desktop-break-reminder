@@ -1,4 +1,4 @@
-Timer app with two modes: Work and Rest. User can:
+Desktop timer app with two modes: Work and Rest. User can:
 1. Toggle b/w a light and dark theme.
 2. Set the work & rest durations (both capped at 24h).
 3. Select whether or not they want:
