@@ -42,7 +42,6 @@
   <!-- todo: make it possible to enter "unset" as a value for the bgHex fields. unset resets the colors. -->
 </template>
 <script>
-import { isValidColorValue } from "../rules-input/all";
 import InputFieldColor from "../components/InputFieldColor.vue";
 import InputFieldTime from "../components/InputFieldTime.vue";
 
@@ -73,7 +72,6 @@ export default {
     return {
       loadingSettings: true,
       settings: null,
-      rulesColor: [isValidColorValue],
     };
   },
 };
