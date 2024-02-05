@@ -9,6 +9,8 @@ Desktop timer app with two modes: Work and Rest. User can:
    - The timer is running.
    - The timer is paused.
 
-**What am I working on?** Implementations of requirements 1. and 5. can conflict with each other.
+**TODOs**
+- Implementations of requirements 1. and 5. can conflict with each other. Resolve that.
+- New setting: Auto-start on user login?
 
-After I resolve this issue, an installer will be provided in a public repo. The `README.MD` of the public repo will have a manual with screenshots of the app.
+After I finish all TODOs an installer will be provided in a public repo. The `README.MD` of the public repo will have a manual with screenshots of the app.
