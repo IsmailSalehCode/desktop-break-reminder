@@ -28,20 +28,12 @@
 
         <InputFieldColor
           v-model="settings.bgHexTimerRunning"
-          label="BG color during timer run."
+          label="BG color when timer is running."
         />
-        <!-- <v-text-field
-          class="color-field"
-          v-model="settings.bgHexTimerRunning"
-          label="BG color during timer run."
-          :rules="rulesColor"
-        ></v-text-field> -->
-        <v-text-field
-          class="color-field"
+        <InputFieldColor
           v-model="settings.bgHexTimerPaused"
-          label="BG color when timer paused."
-          :rules="rulesColor"
-        ></v-text-field>
+          label="BG color when timer is paused."
+        />
         <br />
         <v-btn variant="tonal" type="submit">Save & Apply</v-btn>
       </v-form>
