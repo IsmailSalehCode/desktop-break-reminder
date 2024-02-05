@@ -1,5 +1,5 @@
 Timer app with two modes: Work and Rest. User can:
-1. Toggle the theme of the app
+1. Toggle b/w a light and dark theme.
 2. Set the work & rest durations (both capped at 24h).
 3. Select whether or not they want:
    - The app window to be minimized when the timer starts running.
@@ -9,6 +9,6 @@ Timer app with two modes: Work and Rest. User can:
    - The timer is running.
    - The timer is paused.
 
-**Current issue**: Requirements 1) and 4 can conflict with each other.
+**What am I working on?** Requirements 1. and 5. can conflict with each other.
 
 After I resolve this issue this repo will be set to private and an installer will be provided in a public repo. The `README.MD` of the public repo will have a manual with screenshots of the app.
