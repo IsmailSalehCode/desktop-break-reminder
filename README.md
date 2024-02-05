@@ -2,12 +2,12 @@ Timer app with two modes: Work and Rest. User can:
 1. Toggle the theme of the app
 2. Set the work & rest durations (both capped at 24h).
 3. Select whether or not they want:
-  - A message to be displayed in the taskbar upon timer elapse.
-  - The app window to be maximized upon timer elapse.
-  - The app window to be minimized when the timer becomes active.
+- A message to be displayed in the taskbar upon timer elapse.
+- The app window to be maximized upon timer elapse.
+- The app window to be minimized when the timer becomes active.
 4. Select background color when:
-  - The timer is running.
-  - The timer is paused.
+- The timer is running.
+- The timer is paused.
 
 **Current issue**: Requirements 1) and 4 can conflict with each other.
 
