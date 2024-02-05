@@ -5,8 +5,8 @@
     </div>
     <div v-if="!loadingSettings">
       <v-form ref="form" @submit="updateSettings" @submit.prevent>
-        <FieldTimeInput v-model="settings.workDuration" label="Work duration" />
-        <FieldTimeInput v-model="settings.restDuration" label="Rest duration" />
+        <InputFieldTime v-model="settings.workDuration" label="Work duration" />
+        <InputFieldTime v-model="settings.restDuration" label="Rest duration" />
         <v-checkbox
           density="comfortable"
           v-model="settings.wantsTrayMsgWhenTimerElapsed"
@@ -45,11 +45,11 @@
   <!-- todo: make it possible to enter "unset" as a value for the bgHex fields. unset resets the colors. -->
 </template>
 <script>
-import FieldTimeInput from "../components/FieldTimeInput.vue";
+import InputFieldTime from "../components/InputFieldTime.vue";
 import { isValidColorValue } from "../rules-input/all";
 export default {
   components: {
-    FieldTimeInput,
+    InputFieldTime,
   },
   mounted() {
     this.getSettings();
