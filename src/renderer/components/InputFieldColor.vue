@@ -32,15 +32,9 @@
 export default {
   props: ["modelValue", "label", "rules"],
   emits: ["update:modelValue"],
-  // mounted() {
-  //   this.setShapeCurrColor();
-  // },
   data() {
     return {
       pickedColor: "",
-      //   hours: 0,
-      //   minutes: 0,
-      //   seconds: 0,
     };
   },
   watch: {
@@ -51,7 +45,6 @@ export default {
       },
     },
     pickedColor() {
-      console.log(this.pickedColor);
       this.$emit("update:modelValue", this.pickedColor);
     },
   },
