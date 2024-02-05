@@ -25,12 +25,17 @@
           label="Minimize when timer starts."
           hide-details
         ></v-checkbox>
-        <v-text-field
+
+        <InputFieldColor
+          v-model="settings.bgHexTimerRunning"
+          label="BG color during timer run."
+        />
+        <!-- <v-text-field
           class="color-field"
           v-model="settings.bgHexTimerRunning"
           label="BG color during timer run."
           :rules="rulesColor"
-        ></v-text-field>
+        ></v-text-field> -->
         <v-text-field
           class="color-field"
           v-model="settings.bgHexTimerPaused"
@@ -45,11 +50,14 @@
   <!-- todo: make it possible to enter "unset" as a value for the bgHex fields. unset resets the colors. -->
 </template>
 <script>
-import InputFieldTime from "../components/InputFieldTime.vue";
 import { isValidColorValue } from "../rules-input/all";
+import InputFieldColor from "../components/InputFieldColor.vue";
+import InputFieldTime from "../components/InputFieldTime.vue";
+
 export default {
   components: {
     InputFieldTime,
+    InputFieldColor,
   },
   mounted() {
     this.getSettings();
