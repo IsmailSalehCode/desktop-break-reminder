@@ -19,7 +19,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     title: "Break Reminder",
     width: 480,
-    height: 480,
+    height: 680,
     webPreferences: {
       backgroundThrottling: false,
       preload: join(__dirname, "preload.js"),
@@ -101,6 +101,12 @@ app.whenReady().then(() => {
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
+
+  // When all windows are closed, the app automatically transfers to the background, with its icon appearing in the system tray.
+  mainWindow.on("close", (event) => {
+    event.preventDefault();
+    mainWindow.hide();
+  });
 });
 
 ipcMain.on("bring-main-window-to-front", () => {
@@ -137,9 +143,13 @@ ipcMain.on("show-system-tray-msg", (event, obj) => {
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common for applications and their menu bar to stay active until the user quits explicitly with Cmd + Q.
-// app.on("window-all-closed", () => {
-//   if (process.platform !== "darwin") {
-//     app.quit();
-//   }
+// app.on("window-all-closed", (event) => {
+//   event.preventDefault(); // Prevent default behavior (closing the app)
+//   // Hide the window instead of closing
+//   mainWindow.hide();
 // });
-//TODO: give icon a black background. Not transparent cuz it may get lost on light-themed backgrounds.
+
+// Auto-launch at user login.
+app.setLoginItemSettings({
+  openAtLogin: true,
+});
