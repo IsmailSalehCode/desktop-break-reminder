@@ -42,7 +42,6 @@ export default {
       immediate: true,
       handler(inputColor) {
         this.setUIShapeColor();
-        // this.$refs.shapeModel.style.backgroundColor = this.pickedColor;
         this.pickedColor = inputColor;
       },
     },
