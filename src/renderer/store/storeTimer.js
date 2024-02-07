@@ -58,7 +58,8 @@ const store = new Vuex.Store({
       try {
         await SettingsController.updateSettings(newSettings);
         commit("setSettings", newSettings);
-        showAlert("info", "Done!");
+        // showAlert("info", "Done!");
+        return 0;
       } catch (err) {
         handleError(err);
       }

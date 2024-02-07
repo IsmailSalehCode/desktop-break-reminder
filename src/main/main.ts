@@ -14,7 +14,6 @@ let tray: Tray;
 const iconPath = join(app.getAppPath(), "static", "w-timer.ico");
 let mainWindow;
 // TODO: limit to one process at a time. Not able to spawn more.
-// save and apply avtomati4no; bez suob6tenie 'Done'
 // icons for menu buttons
 function createWindow() {
   // Create the browser window.
@@ -50,9 +49,9 @@ function createWindow() {
 
   const isDev = process.env.IS_DEV == "true" ? true : false;
   // Open the DevTools. TODO: remove dev tools from prod
-  if (isDev) {
-    mainWindow.webContents.openDevTools();
-  }
+  // if (isDev) {
+  mainWindow.webContents.openDevTools();
+  // }
 }
 
 function createTray() {
