@@ -13,7 +13,6 @@ import {
 let tray: Tray;
 const iconPath = join(app.getAppPath(), "static", "w-timer.ico");
 let mainWindow;
-// TODO: limit to one process at a time. Not able to spawn more.
 // icons for menu buttons
 function createWindow() {
   // Create the browser window.
@@ -79,6 +78,25 @@ function createTray() {
     mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
   });
 }
+
+// TODO: limit to one process at a time. Not able to spawn more.
+//Force single instance
+const additionalData = { key: 123 };
+const gotTheLock = app.requestSingleInstanceLock(additionalData);
+
+if (!gotTheLock) {
+  app.quit();
+} else {
+  app.on("second-instance", () => {
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) {
+        mainWindow.restore();
+      }
+      mainWindow.focus();
+    }
+  });
+}
+//======================
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

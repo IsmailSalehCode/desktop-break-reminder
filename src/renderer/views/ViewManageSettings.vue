@@ -39,25 +39,22 @@
       </v-form>
     </div>
   </v-container>
-  <PopUp ref="popUp" />
   <!-- todo: make it possible to enter "unset" as a value for the bgHex fields. unset resets the colors. -->
 </template>
 <script>
 import InputFieldColor from "../components/InputFieldColor.vue";
 import InputFieldTime from "../components/InputFieldTime.vue";
-import PopUp from "../components/PopUp.vue";
 
 export default {
   components: {
     InputFieldTime,
     InputFieldColor,
-    PopUp,
   },
   mounted() {
     this.getSettings();
   },
-  beforeRouteLeave() {
-    this.updateSettings();
+  async beforeUnmount() {
+    await this.updateSettings();
   },
   methods: {
     async getSettings() {
@@ -80,7 +77,7 @@ export default {
       }
     },
     indicateUpdatedSettings() {
-      this.$refs.popUp.open("Saved settings.");
+      this.$emit("open-pop-up", "Saved settings.");
     },
   },
   data() {

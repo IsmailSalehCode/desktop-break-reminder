@@ -6,7 +6,9 @@
         @timer-elapsed="onTimerElapsed"
         @timer-running="onTimerRunning"
         @timer-paused="onTimerPaused"
+        @open-pop-up="openPopUp"
       ></router-view>
+      <PopUp ref="popUp" />
     </v-main>
     <AppFooter />
   </v-app>
@@ -15,9 +17,10 @@
 <script>
 import AppBar from "./components/AppBar.vue";
 import AppFooter from "./components/AppFooter.vue";
+import PopUp from "./components/PopUp.vue";
 
 export default {
-  components: { AppBar, AppFooter },
+  components: { AppBar, AppFooter, PopUp },
   created() {
     // prevent blank page in Electron build
     this.$router.push("/");
@@ -31,6 +34,9 @@ export default {
     };
   },
   methods: {
+    openPopUp(msg) {
+      this.$refs.popUp.open(msg);
+    },
     async setPausedBGColor(isPaused) {
       let newBGColor;
       if (isPaused) {

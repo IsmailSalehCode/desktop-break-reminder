@@ -4,8 +4,8 @@
       {{ message }}
       {{ randomCelebration() }}
     </div>
-    <template v-slot:action="{ attrs }">
-      <v-btn color="pink" text v-bind="attrs" @click="close()"> Close </v-btn>
+    <template v-slot:actions>
+      <v-btn color="pink" text @click="close()"> Ok </v-btn>
     </template>
   </v-snackbar>
 </template>
