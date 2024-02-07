@@ -18,8 +18,8 @@ async function createDefaultRow() {
     wantsMaxWhenTimerElapsed: false,
     wantsMinWhenTimerStart: false,
     wantsTrayMsgWhenTimerElapsed: true,
-    bgHexTimerRunning: "unset",
-    bgHexTimerPaused: "unset",
+    bgHexTimerRunning: "#121212",
+    bgHexTimerPaused: "#121212",
   });
 }
 
