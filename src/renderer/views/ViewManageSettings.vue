@@ -66,18 +66,9 @@ export default {
       const { valid } = await this.$refs.form.validate();
       if (valid) {
         this.loadingSettings = true;
-        const result = await this.$store.dispatch(
-          "updateSettings",
-          this.settings
-        );
-        if (result === 0) {
-          this.indicateUpdatedSettings();
-        }
+        await this.$store.dispatch("updateSettings", this.settings);
         this.loadingSettings = false;
       }
-    },
-    indicateUpdatedSettings() {
-      this.$emit("open-pop-up", "Saved settings.");
     },
   },
   data() {
