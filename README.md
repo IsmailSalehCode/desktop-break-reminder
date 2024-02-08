@@ -8,3 +8,5 @@ Desktop timer app with two modes: Work and Rest. User can:
 4. Select background color when:
    - The timer is running.
    - The timer is paused.
+  
+   Expect soon: setup/installer + user manual with screenshots of the app
