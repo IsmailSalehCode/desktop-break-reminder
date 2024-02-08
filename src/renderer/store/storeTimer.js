@@ -65,15 +65,16 @@ const store = new Vuex.Store({
 
     async updateSettings({ commit }, newSettings) {
       try {
-        await SettingsController.updateSettings(newSettings);
-        commit("setSettings", newSettings);
-        // showAlert("info", "Done!");
-        this.dispatch("showSystemTrayMessage", {
-          iconType: "info",
-          title: "Settings",
-          content: "Your preferences have been saved.",
-        });
-        return 0;
+        const result = await SettingsController.updateSettings(newSettings);
+        if (result == 0) {
+          commit("setSettings", newSettings);
+          // showAlert("info", "Done!");
+          this.dispatch("showSystemTrayMessage", {
+            iconType: "info",
+            title: "Settings",
+            content: "Your preferences have been saved.",
+          });
+        }
       } catch (err) {
         handleError(err);
       }
