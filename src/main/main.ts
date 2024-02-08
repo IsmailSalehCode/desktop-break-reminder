@@ -9,7 +9,7 @@ import {
   Tray,
   session,
 } from "electron";
-
+const appTitle = "Break Reminder";
 let tray: Tray;
 const iconPath = join(app.getAppPath(), "static", "w-timer.ico");
 let mainWindow;
@@ -17,7 +17,7 @@ let mainWindow;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    title: "Break Reminder",
+    title: appTitle,
     width: 480,
     height: 680,
     webPreferences: {
@@ -61,6 +61,7 @@ function createTray() {
       label: "Open",
       click: () => {
         mainWindow.show();
+        mainWindow.focus();
       },
     },
     {
@@ -71,7 +72,8 @@ function createTray() {
     },
   ]);
 
-  tray.setToolTip(mainWindow.title);
+  tray.setTitle(appTitle);
+  tray.setToolTip(appTitle);
   tray.setContextMenu(contextMenu);
 
   tray.on("click", () => {
@@ -157,8 +159,12 @@ ipcMain.on("show-alert", (event, type, message) => {
   });
 });
 
-ipcMain.on("show-system-tray-msg", (event, obj) => {
-  tray.displayBalloon(obj);
+ipcMain.on("show-system-tray-msg", (event, p_iconType, p_content) => {
+  tray.displayBalloon({
+    iconType: p_iconType,
+    title: "Notification",
+    content: p_content,
+  });
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common for applications and their menu bar to stay active until the user quits explicitly with Cmd + Q.

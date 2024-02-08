@@ -62,7 +62,6 @@ export default {
       if (wantsTrayMsgWhenTimerElapsed) {
         this.$store.dispatch("showSystemTrayMessage", {
           iconType: "info",
-          title: "Timer",
           content: "Time's up!",
         });
       }

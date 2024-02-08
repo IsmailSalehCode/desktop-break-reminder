@@ -56,23 +56,21 @@ const store = new Vuex.Store({
     },
 
     showSystemTrayMessage(context, payload) {
-      window.electronAPI.showSystemTrayMessage({
-        iconType: payload.iconType,
-        title: payload.title,
-        content: payload.content,
-      });
+      window.electronAPI.showSystemTrayMessage(
+        payload.iconType,
+        payload.content
+      );
     },
 
     async updateSettings({ commit }, newSettings) {
       try {
         const result = await SettingsController.updateSettings(newSettings);
-        if (result == 0) {
+        if (result === 0) {
           commit("setSettings", newSettings);
           // showAlert("info", "Done!");
           this.dispatch("showSystemTrayMessage", {
             iconType: "info",
-            title: "Settings",
-            content: "Your preferences have been saved.",
+            content: "Your settings have been updated.",
           });
         }
       } catch (err) {

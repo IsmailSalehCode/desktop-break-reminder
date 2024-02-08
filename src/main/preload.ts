@@ -13,7 +13,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
   showAlert: (type: string, message: string) => {
     ipcRenderer.send("show-alert", type, message);
   },
-  showSystemTrayMessage: (obj: Object) => {
-    ipcRenderer.send("show-system-tray-msg", obj);
+  showSystemTrayMessage: (iconType: String, content: String) => {
+    ipcRenderer.send("show-system-tray-msg", iconType, content);
   },
 });
