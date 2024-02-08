@@ -81,8 +81,7 @@ function createTray() {
   });
 }
 
-// TODO: limit to one process at a time. Not able to spawn more.
-//Force single instance
+// Unable to spawn > 1 instance of the app.
 const additionalData = { key: 123 };
 const gotTheLock = app.requestSingleInstanceLock(additionalData);
 
@@ -90,12 +89,8 @@ if (!gotTheLock) {
   app.quit();
 } else {
   app.on("second-instance", () => {
-    if (mainWindow) {
-      if (mainWindow.isMinimized()) {
-        mainWindow.restore();
-      }
-      mainWindow.focus();
-    }
+    mainWindow.show();
+    mainWindow.focus();
   });
 }
 //======================
