@@ -8,9 +8,5 @@ Desktop timer app with two modes: Work and Rest. User can:
 4. Select background color when:
    - The timer is running.
    - The timer is paused.
-
-**TODOs**
-- Implementations of requirements 1. and 4. can conflict with each other in a non-breaking way.
-- New setting: Auto-start on user login?
-
-After I finish all TODOs an installer will be provided in a public repo. The `README.MD` of the public repo will have a manual with screenshots of the app.
+  
+   Expect soon: setup/installer + user manual with screenshots of the app
