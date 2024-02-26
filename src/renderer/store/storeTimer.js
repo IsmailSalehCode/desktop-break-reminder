@@ -79,6 +79,7 @@ const store = new Vuex.Store({
     },
     async initWorkSeconds({ commit }) {
       await this.dispatch("getSettings");
+      console.log("Settings:", this.getters.settings);
       const workDuration = this.getters.settings.workDuration;
       commit("setSecondsRemaining", workDuration);
     },

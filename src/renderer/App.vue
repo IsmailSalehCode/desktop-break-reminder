@@ -1,7 +1,10 @@
 <template>
   <v-app ref="appContainer">
     <AppBar />
-    <v-main>
+    <v-main v-if="loadingInitStore">
+      <v-container>Initializing app...</v-container>
+    </v-main>
+    <v-main v-if="!loadingInitStore">
       <router-view
         @timer-elapsed="onTimerElapsed"
         @timer-running="onTimerRunning"
@@ -23,11 +26,15 @@ export default {
     this.$router.push("/");
   },
   async mounted() {
+    //init store
+    this.loadingInitStore = true;
     await this.$store.dispatch("initWorkSeconds");
+    this.loadingInitStore = false;
   },
   data() {
     return {
       appHexBG: "default",
+      loadingInitStore: true,
     };
   },
   methods: {
