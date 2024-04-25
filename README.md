@@ -9,4 +9,10 @@ Desktop timer app with two modes: Work and Rest. User can:
    - The timer is running.
    - The timer is paused.
   
-   Expect soon: setup/installer + user manual with screenshots of the app
+   Expect soon: setup/installer + user manual
+
+**Sample screenshots**   
+![1](https://github.com/IsmailSalehCode/desktop-break-reminder/assets/55927975/473d8fb6-fbfe-4638-9116-44694959242e)
+![2](https://github.com/IsmailSalehCode/desktop-break-reminder/assets/55927975/09d34bb5-fc55-4eb9-9657-5d1c1351941c)
+![3](https://github.com/IsmailSalehCode/desktop-break-reminder/assets/55927975/a1eafbdf-d68c-41c2-bbdc-05bbeb02af67)
+![4](https://github.com/IsmailSalehCode/desktop-break-reminder/assets/55927975/ed866c72-dc3d-492b-a54b-f9ca67f631d5)
