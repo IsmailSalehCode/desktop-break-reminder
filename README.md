@@ -16,12 +16,16 @@ Desktop timer app with two modes: Work and Rest. User can:
    <div >
    <h1>Sample screenshots</h1>
    <img alt="1" src="https://github.com/IsmailSalehCode/desktop-break-reminder/assets/55927975/473d8fb6-fbfe-4638-9116-44694959242e" width="70px"></img>
-   <hr> 
+   <hr>
+<img alt="1.2" src="https://github.com/IsmailSalehCode/desktop-break-reminder/assets/55927975/7e21a75d-05be-4736-938f-564e020dfa82" width="300px"></img>
+      <hr>
+<img alt="1.3" src="https://github.com/IsmailSalehCode/desktop-break-reminder/assets/55927975/f478f7af-9fae-4f29-af3d-4a9154da7d34" width="300px"></img>
+      <hr>
    <img alt="2" src="https://github.com/IsmailSalehCode/desktop-break-reminder/assets/55927975/09d34bb5-fc55-4eb9-9657-5d1c1351941c" width="350px"></img>  
    <hr> 
    <img alt="3" src="https://github.com/IsmailSalehCode/desktop-break-reminder/assets/55927975/a1eafbdf-d68c-41c2-bbdc-05bbeb02af67" width="350px"></img>  
-   <hr> 
-   <img alt="4" src="https://github.com/IsmailSalehCode/desktop-break-reminder/assets/55927975/ed866c72-dc3d-492b-a54b-f9ca67f631d5" width="350px"></img>
+   <hr>
+   <img alt="4" src="https://github.com/IsmailSalehCode/desktop-break-reminder/assets/55927975/6195b8ba-2a12-425b-9731-39037f1d9458" width="250px"></img>
    </div>
    </br>
    <div>
