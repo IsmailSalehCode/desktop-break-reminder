@@ -48,9 +48,9 @@ function createWindow() {
 
   const isDev = process.env.IS_DEV == "true" ? true : false;
   // Open the DevTools. TODO: remove dev tools from prod
-  // if (isDev) {
-  mainWindow.webContents.openDevTools();
-  // }
+  if (isDev) {
+    mainWindow.webContents.openDevTools();
+  }
 }
 
 function createTray() {
