@@ -1,6 +1,6 @@
 <div>
 <h1>Description</h1>
-Desktop timer app with two modes: Work and Rest. User can:
+Desktop timer app I built for myself, so that I do not strain my eyes too much throughout the day. Two modes: Work and Rest. User can:
 
 1. Toggle b/w a light and dark theme.
 2. Set the work & rest durations (both capped at 24h).
