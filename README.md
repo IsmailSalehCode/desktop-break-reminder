@@ -27,7 +27,7 @@ Desktop timer app with two modes: Work and Rest. User can:
    <hr> 
    <img alt="3" src="https://github.com/IsmailSalehCode/desktop-break-reminder/assets/55927975/a1eafbdf-d68c-41c2-bbdc-05bbeb02af67" width="350px"></img>  
    <hr>
-   <img alt="4" src="https://github.com/IsmailSalehCode/desktop-break-reminder/assets/55927975/6195b8ba-2a12-425b-9731-39037f1d9458" width="250px"></img>
+   <img alt="4" src="https://github.com/IsmailSalehCode/desktop-break-reminder/assets/55927975/6195b8ba-2a12-425b-9731-39037f1d9458" width="200px"></img>
    </div>
    </br>
    <div>
